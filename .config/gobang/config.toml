@@ -1,0 +1,23 @@
+[[conn]]
+name = "Tila Production"
+type = "mysql"
+user = "admin"
+password = "119bc9e26136"
+host = "tila.cluster-cmq7brz2wjlm.us-east-1.rds.amazonaws.com"
+port = 3306
+
+[[conn]]
+name = "Tila Development"
+type = "mysql"
+user = "admin"
+password = "2CaTRCsFiLe4PeO27bwC"
+host = "tila-development-cluster.cmq7brz2wjlm.us-east-1.rds.amazonaws.com"
+port = 3306
+
+[[conn]]
+name = "Local"
+type = "mysql"
+user = "root"
+host = "localhost"
+port = 3306
+

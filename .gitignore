@@ -1,0 +1,4 @@
+.config/lazysql/*
+.config/stripe/*
+.config/github-copilot/*
+.config/raycast/*
