@@ -1,0 +1,11 @@
+layout {
+    floating_panes {
+        pane {
+            command "lazysql" 
+            size "80%"
+            focus true
+            name "LAZYSQL"
+        }
+    }
+
+}

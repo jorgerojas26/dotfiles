@@ -73,12 +73,13 @@ export NVM_DIR="$HOME/.nvm"
 # }
 # add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
-# export EDITOR=nvim
+export EDITOR=nvim
 
 export KEYALIAS="tila"
 export STOREFILE="release.keystore"
 export KEYPASSWORD="3J&BFCWp*WR@Jiwt#2vX"
 export STOREPASSWORD="3J&BFCWp*WR@Jiwt#2vX"
+export GITHUB_TOKEN="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"
 
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
@@ -90,6 +91,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 export PATH=$PATH:/flutter/bin
+export PATH=$PATH:/opt/homebrew/bin
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export LC_ALL=en_US.UTF-8
@@ -132,3 +134,17 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 
 echo "Sourcing zshrc"
+
+# pnpm
+export PNPM_HOME="/Users/jorgerojas/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# bun completions
+[ -s "/Users/jorgerojas/.bun/_bun" ] && source "/Users/jorgerojas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

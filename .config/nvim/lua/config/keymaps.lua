@@ -90,6 +90,10 @@ map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
 map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 map("n", "<leader>cL", "<cmd>lua require('logsitter').log() <CR>", { desc = "Console log" })
 
+map("n", "<leader>gh", "<cmd>! gh browse <CR>", { desc = "Browse github repo" })
+
+-- map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 function _G.toggle_current_term()
   local opts = { buffer = 0 }
   local term_buf = vim.fn.bufname(vim.api.nvim_get_current_buf())

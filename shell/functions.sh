@@ -17,3 +17,8 @@ function recent_dirs() {
 
 	cd "$(echo "$selected" | sed "s/\~/$escaped_home/")" || echo "Invalid directory"
 }
+
+function depersonalize_infobip_token_from_datadog() {
+	cat $1 | sed -E 's/.*push\/([A-Z0-9-]+)\/depersonalize.*/\1/' | awk 'BEGIN{printf "["} {printf "\"%s\", ",$1} END{printf "\b\b]"}' >depersonalized.json
+
+}

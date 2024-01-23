@@ -39,3 +39,4 @@ alias up='dot package update_all'
 alias nvim="nvim --listen /tmp/nvim-server-$(tmux display-message -p '#S')-$(tmux display-message -p '#I')-$(tmux display-message -p '#P').pipe"
 alias le='~/Library/Android/sdk/tools/emulator -list-avds'
 alias re='~/Library/Android/sdk/tools/emulator -avd $1'
+alias zellij='zellij attach --index 0 --create'
