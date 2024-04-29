@@ -111,6 +111,11 @@ return {
       { "<leader>gc", "<cmd> Telescope git_bcommits theme=ivy <CR>", desc = "Telescope bcommits" },
       { "<leader>gC", "<cmd> Telescope git_commits theme=ivy<CR>", desc = "Telescope commits" },
       { "<leader>ss", "<cmd> Telescope treesitter <CR>", desc = "Treesitter symbols" },
+      {
+        "<leader>ff",
+        "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>",
+        desc = "Treesitter symbols",
+      },
     },
   },
   {
@@ -283,30 +288,31 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      table.insert(opts.ensure_installed, "prettierd")
-      table.insert(opts.ensure_installed, "eslint_d")
+      table.insert(opts.ensure_installed, "biome")
+      -- table.insert(opts.ensure_installed, "prettierd")
+      -- table.insert(opts.ensure_installed, "eslint_d")
     end,
   },
   {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["javascript"] = { "prettierd" },
-        ["javascriptreact"] = { "prettierd" },
-        ["typescript"] = { "prettierd" },
-        ["typescriptreact"] = { "prettierd" },
-        ["vue"] = { "prettierd" },
-        ["css"] = { "prettierd" },
-        ["scss"] = { "prettierd" },
-        ["less"] = { "prettierd" },
-        ["html"] = { "prettierd" },
-        ["json"] = { "prettierd" },
-        ["jsonc"] = { "prettierd" },
-        ["yaml"] = { "prettierd" },
-        ["markdown"] = { "prettierd" },
-        ["markdown.mdx"] = { "prettierd" },
-        ["graphql"] = { "prettierd" },
-        ["handlebars"] = { "prettierd" },
+        ["javascript"] = { "biome" },
+        ["javascriptreact"] = { "biome" },
+        ["typescript"] = { "biome" },
+        ["typescriptreact"] = { "biome" },
+        ["vue"] = { "biome" },
+        ["css"] = { "biome" },
+        ["scss"] = { "biome" },
+        ["less"] = { "biome" },
+        ["html"] = { "biome" },
+        ["json"] = { "biome" },
+        ["jsonc"] = { "biome" },
+        ["yaml"] = { "biome" },
+        ["markdown"] = { "biome" },
+        ["markdown.mdx"] = { "biome" },
+        ["graphql"] = { "biome" },
+        ["handlebars"] = { "biome" },
       },
     },
   },
