@@ -1,7 +1,7 @@
 local Util = require("lazyvim.util")
 
 return {
-  { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = true }, enabled = false },
+  { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false }, enabled = false },
   { "catppuccin/nvim", name = "catppuccin", opts = { transparent_background = true } },
   -- { "rebelot/kanagawa.nvim" },
   -- { "rose-pine/neovim" },
@@ -18,21 +18,49 @@ return {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       }
+
+      table.insert(opts.sources, { name = "neorg", { name = "orgmode" } })
     end,
   },
   { "akinsho/bufferline.nvim", enabled = false },
   {
     "max397574/better-escape.nvim",
     config = function()
+      -- lua, default settings
       require("better_escape").setup({
-        mapping = { "jk", "kj" }, -- a table with mappings to use
-        timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-        clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-        keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
-        -- example
-        -- keys = function()
-        --   return vim.fn.col '.' - 2 >= 1 and '<esc>l' or '<esc>'
-        -- end,
+        timeout = vim.o.timeoutlen,
+        default_mappings = true,
+        mappings = {
+          i = {
+            j = {
+              -- These can all also be functions
+              k = "<Esc>",
+              j = "<Esc>",
+            },
+          },
+          c = {
+            j = {
+              k = "<Esc>",
+              j = "<Esc>",
+            },
+          },
+          t = {
+            j = {
+              k = "<Esc>",
+              j = "<Esc>",
+            },
+          },
+          v = {
+            j = {
+              k = "<Esc>",
+            },
+          },
+          s = {
+            j = {
+              k = "<Esc>",
+            },
+          },
+        },
       })
     end,
   },
@@ -99,6 +127,8 @@ return {
       telescope.load_extension("harpoon")
     end,
     keys = {
+
+      -- { "<leader>gs", mode = "n", "<cmd>Fugit2<cr>" },
       -- { "<leader>gs", "<cmd> vertical rightbelow G <CR>", desc = "Fugitive status" },
       {
         "<leader>gs",
@@ -111,11 +141,11 @@ return {
       { "<leader>gc", "<cmd> Telescope git_bcommits theme=ivy <CR>", desc = "Telescope bcommits" },
       { "<leader>gC", "<cmd> Telescope git_commits theme=ivy<CR>", desc = "Telescope commits" },
       { "<leader>ss", "<cmd> Telescope treesitter <CR>", desc = "Treesitter symbols" },
-      {
-        "<leader>ff",
-        "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>",
-        desc = "Treesitter symbols",
-      },
+      -- {
+      --   "<leader>ff",
+      --   "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>",
+      --   desc = "Treesitter symbols",
+      -- },
     },
   },
   {
@@ -129,6 +159,7 @@ return {
         enable = false,
         disable = { "go" },
       },
+      ignore_install = { "org" },
     },
   },
   {
@@ -215,7 +246,7 @@ return {
       },
     },
   },
-  { "lukas-reineke/indent-blankline.nvim", opts = { enabled = false } },
+  { "lukas-reineke/indent-blankline.nvim", opts = { enabled = true } },
   {
     "brenoprata10/nvim-highlight-colors",
     config = function()
@@ -245,13 +276,12 @@ return {
       end
     end,
   },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
-  { "lukas-reineke/cmp-under-comparator" },
-  { "github/copilot.vim" },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {},
+  -- },
+  -- { "lukas-reineke/cmp-under-comparator" },
   {
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -259,18 +289,33 @@ return {
     end,
     lazy = false,
   },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "splits" } },
-  -- stylua: ignore
-  keys = {
-    { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
-    { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-    { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
-  },
-    enabled = false,
-  },
+  -- {
+  --   "folke/persistence.nvim",
+  --   keys = {
+  --     {
+  --       "<leader>qs",
+  --       function()
+  --         require("persistence").load()
+  --       end,
+  --       desc = "Restore Session",
+  --     },
+  --     {
+  --       "<leader>ql",
+  --       function()
+  --         require("persistence").load({ last = true })
+  --       end,
+  --       desc = "Restore Last Session",
+  --     },
+  --     {
+  --       "<leader>qd",
+  --       function()
+  --         require("persistence").stop()
+  --       end,
+  --       desc = "Don't Save Current Session",
+  --     },
+  --   },
+  --   enabled = true,
+  -- },
   { "gaelph/logsitter.nvim" },
   -- { "echasnovski/mini.pairs", enabled = false },
   { "windwp/nvim-ts-autotag" },
@@ -344,4 +389,105 @@ return {
       require("dark_notify").run()
     end,
   },
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<C-e>",
+          clear_suggestion = "<C-]>",
+          accept_word = "<C-j>",
+        },
+      })
+    end,
+  },
+
+  -- {
+  --   "gnikdroy/projections.nvim",
+  --   branch = "dev",
+  --   config = function()
+  --     require("projections").setup({
+  --       -- Workspaces to search for, (table|string)[]
+  --       workspaces = {
+  --         -- Examples:
+  --         -- { path = "~/dev", patterns = { ".git" } },
+  --         -- { path = "~/repos", patterns = {} }      , -- An empty pattern list indicates that all subdirectories are projects
+  --         -- i.e patterns are not considered
+  --         -- { path = "~/dev" },                        -- When patterns is not provided, default patterns is used (specified below)
+  --         { path = "~/projects", patterns = { ".git", ".svn", ".hg" } },
+  --         { path = "~/projects/TilaApp", patterns = { ".git", ".svn", ".hg" } },
+  --         { path = "~/projects/quip", patterns = {} },
+  --         { path = "~/projects/TILA/baby-tila/baby-tila-app", patterns = { ".git", ".svn", ".hg" } },
+  --         { path = "~/projects/TILA/baby-tila/baby-tila-server", patterns = { ".git", ".svn", ".hg" } },
+  --         { path = "~/projects/gochata/gochata-web", patterns = { ".git", ".svn", ".hg" } },
+  --         { path = "~/projects/gochata/gochata-server", patterns = { ".git", ".svn", ".hg" } },
+  --         { path = "/Users/jorgerojas/.dotfiles/.config", patterns = {} },
+  --       },
+  --
+  --       -- Default set of patterns, string[]
+  --       -- NOTE: patterns are not regexps
+  --       default_patterns = { ".git", ".svn", ".hg" },
+  --
+  --       -- The keymapping to use to launch the picker, string?
+  --       -- selector_mapping = "<leader>fp",
+  --
+  --       -- Whether to show preview window via telescope, boolean
+  --       show_preview = true,
+  --
+  --       -- If projections will try to auto restore sessions when you start neovim, boolean
+  --       auto_restore = true,
+  --       -- The behaviour is as follows:
+  --       -- 1) If vim was started with arguments, do nothing
+  --       -- 2) If in some project's root, attempt to restore that project's session
+  --       -- 3) If not, restore last stored session
+  --     })
+  --
+  --     -- Bind <leader>fp to Telescope projections
+  --     require("telescope").load_extension("projections")
+  --
+  --     -- Autostore session on VimExit
+  --     local Session = require("projections.session")
+  --
+  --     -- vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
+  --     --   callback = function()
+  --     --     Session.store(vim.loop.cwd())
+  --     --   end,
+  --     -- })
+  --
+  --     -- If vim was started with arguments, do nothing
+  --     -- If in some project's root, attempt to restore that project's session
+  --     -- If not, restore last session
+  --     -- If no sessions, do nothing
+  --     -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  --     --   callback = function()
+  --     --     if vim.fn.argc() ~= 0 then
+  --     --       return
+  --     --     end
+  --     --     local session_info = Session.info(vim.loop.cwd())
+  --     --     if session_info == nil then
+  --     --       Session.restore_latest()
+  --     --     else
+  --     --       Session.restore(vim.loop.cwd())
+  --     --     end
+  --     --   end,
+  --     --   desc = "Restore last session automatically",
+  --     -- })
+  --
+  --     -- local switcher = require("projections.switcher")
+  --     -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  --     --   callback = function()
+  --     --     if vim.fn.argc() == 0 then
+  --     --       switcher.switch(vim.loop.cwd())
+  --     --     end
+  --     --   end,
+  --     -- })
+  --     --
+  --     -- vim.api.nvim_create_autocmd("User", {
+  --     --   pattern = "ProjectionsPreStoreSession",
+  --     --   callback = function()
+  --     --     vim.lsp.stop_client(vim.lsp.get_clients())
+  --     --   end,
+  --     -- })
+  --   end,
+  -- },
 }

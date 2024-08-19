@@ -15,6 +15,7 @@ config.window_padding = {
 }
 config.enable_tab_bar = false
 config.scrollback_lines = 5000
+config.window_background_opacity = 0.95
 
 -- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 

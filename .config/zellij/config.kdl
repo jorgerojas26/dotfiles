@@ -9,8 +9,6 @@ keybinds clear-defaults=true {
         bind "Ctrl l" { MoveFocus "Right";  }
         bind "Ctrl j" { MoveFocus "Down";  }
         bind "Ctrl k" { MoveFocus "Up";  }
-        bind "Ctrl p" {  SwitchToMode "pane"; }
-        bind "Ctrl m" {  SwitchToMode "move"; }
         bind "Ctrl L" { Clear; }
     }
     move {
@@ -37,8 +35,14 @@ keybinds clear-defaults=true {
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
     }
     tmux {
-        bind "Ctrl m" { SwitchToMode "resize"; }
+        // bind "Ctrl m" { SwitchToMode "resize"; }
+        bind "H" { Resize "Left"; }
+        bind "J" { Resize "Down"; }
+        bind "K" { Resize "Up"; }
+        bind "L" { Resize "Right"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+        bind ">" { MovePane "Right"; SwitchToMode "Normal"; }
+        bind "<" { MovePane "Left"; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "[" { SwitchToMode "Scroll"; }
         bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
@@ -46,8 +50,8 @@ keybinds clear-defaults=true {
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "," { SwitchToMode "RenameTab"; }
-        bind "Ctrl h" { GoToPreviousTab;}
-        bind "Ctrl l" { GoToNextTab; }
+        bind "Ctrl h" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "Ctrl l" { GoToNextTab; SwitchToMode "Normal"; }
         bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
         bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
@@ -64,8 +68,16 @@ keybinds clear-defaults=true {
             SwitchToMode "normal"
         }
         bind "\\" {
-            Run "zellij" "run" "--layout" "~/.config/zellij/layout/lazysql.kdl" "--" "lazysql"
+            Run "zellij" "run" "--floating" "--close-on-exit" "--width=100%" "--height=100%" "-x=0" "-y=0" "--name=lazysql" "--" "/Users/jorgerojas/.go/bin/lazysql" {
+                floating true
+                close_on_exit true
+                move_to_focused_tab true
+                move_to_focused_pane true
+            }
+            SwitchToMode "normal"
         }
+        bind "Ctrl p" {  SwitchToMode "pane"; }
+        bind "Ctrl m" {  SwitchToMode "move"; }
     }
     resize {
         bind "h" "Left" { Resize "Left"; }
@@ -198,7 +210,7 @@ theme "catppuccin-mocha"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-default_layout "compact"
+default_layout "default"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal

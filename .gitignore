@@ -2,3 +2,10 @@
 .config/stripe/*
 .config/github-copilot/*
 .config/raycast/*
+.config/yarn/*
+.DS_Store
+.config/zed/.tmp*
+.config/zed/embeddings/*
+.config/wireshark/*
+.config/StardewValley/*
+.config/configstore/*

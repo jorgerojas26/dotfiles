@@ -38,7 +38,7 @@ map("n", "<C-t>", function()
     cwd = Util.root.get(),
     ctrl_hjkl = false,
     border = "rounded",
-    persistent = false,
+    persistent = true,
     title = "Lazysql",
     title_pos = "center",
   })
@@ -90,7 +90,7 @@ map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
 map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 map("n", "<leader>cL", "<cmd>lua require('logsitter').log() <CR>", { desc = "Console log" })
 
-map("n", "<leader>gh", "<cmd>! gh browse <CR>", { desc = "Browse github repo" })
+-- map("n", "<leader>gh", "<cmd>! gh browse <CR>", { desc = "Browse github repo" })
 
 -- map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
@@ -105,3 +105,10 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd("autocmd! TermOpen term://* lua toggle_current_term()")
+
+-- map("n", "<C-s>", require("auto-session.session-lens").search_session, { noremap = true })
+
+map("n", "<C-s>", "<cmd> Telescope projections <CR>")
+
+map("n", "<c-->", "<cmd> Terminal <CR>", { desc = "Terminal (Root Dir)" })
+map("t", "<c-->", "<cmd>bw! <CR>", { desc = "Remove terminal" })
