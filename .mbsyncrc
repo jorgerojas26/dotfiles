@@ -1,0 +1,112 @@
+# Personal GMAIL account
+
+IMAPAccount jorge
+Host imap.gmail.com
+Port 993
+User jorgeluisrojasb@gmail.com
+PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorgeluisrojasb@gmail.com.gpg"
+AuthMechs LOGIN
+TLSType IMAPS
+TLSVersions +1.3
+
+IMAPStore gmail-remote
+Account jorge
+
+MaildirStore gmail-local
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/INBOX
+SubFolders Verbatim
+
+Channel jorge
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
+Create Both 
+Expunge Both
+SyncState *
+
+
+# =====================================================================
+
+# Proton Mail Andino account
+IMAPAccount andino
+Host 127.0.0.1
+Port 1143
+User jorge@andinotechnologies.com
+PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@andinotechnologies.com.gpg"
+AuthMechs LOGIN
+TLSType None
+
+IMAPStore andino-remote
+Account andino
+
+MaildirStore andino-local
+Path ~/mail/proton/
+Inbox ~/mail/proton/Inbox
+SubFolders Verbatim
+
+Channel andino
+Far :andino-remote:
+Near :andino-local:
+Patterns *
+Create Both 
+Expunge Both
+SyncState *
+
+# =====================================================================
+
+# Tila Mail account
+IMAPAccount tila
+Host lithiumpr.mx
+Port 993
+User jorge@tila.app
+PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@tila.app.gpg"
+AuthMechs LOGIN
+TLSType IMAPS
+TLSVersions +1.3
+
+IMAPStore tila-remote
+Account tila
+
+MaildirStore tila-local
+Path ~/mail/tila/
+Inbox ~/mail/tila/Inbox
+SubFolders Verbatim
+
+Channel tila
+Far :tila-remote:
+Near :tila-local:
+Patterns *
+Create Both 
+Expunge Both
+SyncState *
+MaxMessages 1000
+
+# =====================================================================
+
+# Baby TILA Mail account
+IMAPAccount baby-tila
+Host mail.babytila.app
+Port 993
+User jorge.rojas@babytila.app
+PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge.rojas@babytila.app.gpg"
+AuthMechs LOGIN
+TLSType IMAPS
+TLSVersions +1.3
+
+IMAPStore baby-tila-remote
+Account baby-tila
+
+MaildirStore baby-tila-local
+Path ~/mail/baby-tila/
+Inbox ~/mail/baby-tila/Inbox
+SubFolders Verbatim
+
+Channel baby-tila
+Far :baby-tila-remote:
+Near :baby-tila-local:
+Patterns *
+Create Both 
+Expunge Both
+SyncState *
+MaxMessages 1000

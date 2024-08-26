@@ -9,3 +9,5 @@
 .config/wireshark/*
 .config/StardewValley/*
 .config/configstore/*
+.gnupg/*
+mail

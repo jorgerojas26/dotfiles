@@ -130,13 +130,14 @@ return {
 
       -- { "<leader>gs", mode = "n", "<cmd>Fugit2<cr>" },
       -- { "<leader>gs", "<cmd> vertical rightbelow G <CR>", desc = "Fugitive status" },
-      {
-        "<leader>gs",
-        function()
-          Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
-        end,
-        desc = "Telescope bcommits",
-      },
+      { "<leader>gs", "<cmd> Neogit <CR>", desc = "Neogit status" },
+      -- {
+      --   "<leader>gs",
+      --   function()
+      --     Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
+      --   end,
+      --   desc = "Telescope bcommits",
+      -- },
       { "<leader>sg", "<cmd> Telescope live_grep theme=ivy <CR>", desc = "Telescope live_grep" },
       { "<leader>gc", "<cmd> Telescope git_bcommits theme=ivy <CR>", desc = "Telescope bcommits" },
       { "<leader>gC", "<cmd> Telescope git_commits theme=ivy<CR>", desc = "Telescope commits" },

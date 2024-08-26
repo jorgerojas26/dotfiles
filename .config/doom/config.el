@@ -2,15 +2,144 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+(setq native-comp-async-report-warnings-errors 'silent)
 
 ;; Keymaps
+(general-auto-unbind-keys)
+(map! :leader
+      "a" nil)
+
 (map! :leader
       :desc "Switch to last buffer"
       "l" #'mode-line-other-buffer)
+
 (map! :leader
       :desc "Switch to last workspace"
       "p l" #'+workspace/other)
 
+(map! :leader
+      (:prefix ("j" . "journal")
+       :desc "Open journal today entry"
+       "j" #'org-journal-new-entry)
+      )
+
+(map! :leader
+      (:prefix ("j" . "journal")
+       :desc "Open journal scheduled entry"
+       "J" #'org-journal-new-scheduled-entry)
+      )
+
+(map! :leader
+      (:prefix ("j" . "journal")
+       :desc "Search journal by date"
+       "s" #'org-journal-new-date-entry)
+      )
+
+(defun org-agenda-show-agenda-and-todo (&optional arg)
+  (interactive "P")
+  (org-agenda arg "n"))
+
+(map! :leader
+      (:prefix ("a" . "agenda")
+       :desc "Open agenda"
+       "a" #'org-agenda-show-agenda-and-todo)
+      )
+
+;; Mail
+
+(require 'mu4e-icalendar)
+(gnus-icalendar-setup)
+
+(mu4e t)
+(require 'timezone)
+
+(setq mu4e-alert-email-notification-types '(subjects))
+
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
+
+
+(setq mu4e-attachment-dir "~/org")
+
+(setq mu4e-update-interval 60)
+(setq mu4e-get-mail-command (concat (executable-find "mbsync") " -a"))
+
+;; rename files when moving - needed for mbsync:
+(setq mu4e-change-filenames-when-moving t)
+
+(setq mu4e-hide-index-messages t)
+
+(advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
+
+(set-email-account! "jorge"
+                    '((mu4e-sent-folder       . "/gmail/[Gmail]/Enviados")
+                      (mu4e-trash-folder      . "/gmail/[Gmail]/Trash")
+                      (mu4e-refile-folder     . "/gmail/[Gmail]/Todos")
+                      (smtpmail-smtp-user     . "jorgeluisrojasb@gmail.com")
+                      (user-mail-address      . "jorgeluisrojasb@gmail.com")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "")
+                      (smtpmail-smtp-user . "jorgeluisrojasb@gmail.com") ;
+                      (smtpmail-smtp-server   . "smtp.gmail.com") ;
+                      ;; (smtpmail-smtp-service . 465)
+                      ;; (smtpmail-stream-type . ssl)
+                      )
+                    t)
+
+(set-email-account! "andino"
+                    '((mu4e-sent-folder       . "/proton/Sent")
+                      (mu4e-trash-folder      . "/proton/Trash")
+                      (mu4e-refile-folder     . "/proton/All Mail")
+                      (smtpmail-smtp-user     . "jorge@andinotechnologies.com")
+                      (user-mail-address      . "jorge@andinotechnologies.com")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "")
+                      (smtpmail-smtp-user . "jorge@andinotechnologies.com") ;
+                      (smtpmail-smtp-server   . "127.0.0.1") ;
+                      )
+                    t)
+
+(set-email-account! "tila"
+                    '((mu4e-sent-folder       . "/tila/Sent")
+                      (mu4e-trash-folder      . "/tila/Trash")
+                      (mu4e-refile-folder     . "/tila/All Mail")
+                      (smtpmail-smtp-user     . "jorge@tila.app")
+                      (user-mail-address      . "jorge@tila.app")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "")
+                      (smtpmail-smtp-user . "jorge@tila.app") ;
+                      (smtpmail-smtp-server   . "lithiumpr.mx") ;
+                      (smtpmail-smtp-service . 465)
+                      (smtpmail-stream-type . ssl)
+                      )
+                    t)
+
+(set-email-account! "baby-tila"
+                    '((mu4e-sent-folder       . "/baby-tila/Sent")
+                      (mu4e-trash-folder      . "/baby-tila/Trash")
+                      (mu4e-refile-folder     . "/baby-tila/All Mail")
+                      (smtpmail-smtp-user     . "jorge.rojas@babytila.app")
+                      (user-mail-address      . "jorge.rojas@babytila.app")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "")
+                      (smtpmail-smtp-user . "jorge.rojas@babytila.app") ;
+                      (smtpmail-smtp-server   . "mail.babytila.app") ;
+                      (smtpmail-smtp-service . 465)
+                      (smtpmail-stream-type . ssl)
+                      )
+                    t)
+
+
+(setq mu4e-context-policy 'ask-if-none
+      mu4e-compose-context-policy 'always-ask)
+
+
+
+;; Agenda
+(setq org-journal-enable-agenda-integration t)
+(setq org-alert-interval 300
+      org-alert-notify-cutoff 10
+      org-alert-notify-after-event-cutoff 10)
 
 ;; Company config
 (setq company-minimum-prefix-length 1)
@@ -25,6 +154,8 @@
 
 
 ;; General config
+(setq epa-pinentry-mode 'loopback)
+
 (setq auto-save-default nil)
 
 (setq confirm-kill-emacs nil)
@@ -76,9 +207,8 @@
         org-roam-ui-open-on-start t))
 
 ;; Encryption
-(setq org-journal-enable-encryption t)
-(setq org-journal-encrypt-journal t)
-(setq org-journal-enable-agenda-integration t)
+;; (setq org-journal-enable-encryption t)
+;; (setq org-journal-encrypt-journal t)
 
 
 

@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("/Users/jorgerojas/org/notes.org" "/Users/jorgerojas/org/refile.org" "/Users/jorgerojas/org/todo.org" "/Users/jorgerojas/org/journal/20240830" "/Users/jorgerojas/org/journal/20240819"))
+   '("/Users/jorgerojas/org/notes.org" "/Users/jorgerojas/org/refile.org" "/Users/jorgerojas/org/todo.org" "/Users/jorgerojas/org/journal/20240830" "/Users/jorgerojas/org/journal/20240825"))
  '(package-selected-packages '(lsp-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -12,3 +12,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'list-timers 'disabled nil)

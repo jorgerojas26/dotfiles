@@ -1,0 +1,51 @@
+2024-08-24 00:56:09,678 DEBUG [main] davmail.DavGateway  - Headless mode, do not create GUI
+2024-08-24 00:56:09,679 DEBUG [main] davmail.DavGateway  - Start DavMail in server mode
+2024-08-24 00:56:09,718 INFO  [main] davmail  - DavMail Gateway 6.2.2-3546 listening on SMTP port 5003 IMAP port 5001 LDAP port 5002 
+2024-08-24 00:56:09,718 ERROR [main] davmail  - Unable to bind server socket for CALDAV on port 5000: port not allowed or in use by another process
+
+2024-08-24 00:56:09,797 DEBUG [CheckRelease] davmail.http.HttpClientAdapter  - GET https://davmail.sourceforge.net/version.txt
+2024-08-24 00:56:09,954 DEBUG [CheckRelease] davmail.http.DavGatewaySSLSocketFactory  - createSocket davmail.sourceforge.net 443
+2024-08-24 00:56:10,337 DEBUG [CheckRelease] davmail.DavGateway  - DavMail released version: 6.2.2-3546
+2024-08-24 00:57:50,238 DEBUG [Shutdown] davmail  - Stopping DavMail gateway
+2024-08-24 00:57:50,262 INFO  [Shutdown] davmail  - DavMail gateway stopped
+2024-08-24 00:57:52,323 DEBUG [main] davmail.DavGateway  - Start DavMail in server mode
+2024-08-24 00:57:52,342 INFO  [main] davmail  - DavMail Gateway 6.2.2-3546 listening on SMTP port 1025 POP port 1110 IMAP port 1143 CALDAV port 1080 LDAP port 1389 
+2024-08-24 00:57:52,398 DEBUG [CheckRelease] davmail.http.HttpClientAdapter  - GET https://davmail.sourceforge.net/version.txt
+2024-08-24 00:57:52,454 DEBUG [CheckRelease] davmail.http.DavGatewaySSLSocketFactory  - createSocket davmail.sourceforge.net 443
+2024-08-24 00:57:52,797 DEBUG [CheckRelease] davmail.DavGateway  - DavMail released version: 6.2.2-3546
+2024-08-24 00:57:53,446 DEBUG [Shutdown] davmail  - Stopping DavMail gateway
+2024-08-24 00:57:53,467 INFO  [Shutdown] davmail  - DavMail gateway stopped
+2024-08-24 00:57:56,518 DEBUG [main] davmail.DavGateway  - Start DavMail in server mode
+2024-08-24 00:57:56,535 INFO  [main] davmail  - DavMail Gateway 6.2.2-3546 listening on SMTP port 1025 POP port 1110 IMAP port 1143 CALDAV port 1080 LDAP port 1389 
+2024-08-24 00:57:56,581 DEBUG [CheckRelease] davmail.http.HttpClientAdapter  - GET https://davmail.sourceforge.net/version.txt
+2024-08-24 00:57:56,642 DEBUG [CheckRelease] davmail.http.DavGatewaySSLSocketFactory  - createSocket davmail.sourceforge.net 443
+2024-08-24 00:57:57,025 DEBUG [CheckRelease] davmail.DavGateway  - DavMail released version: 6.2.2-3546
+2024-08-24 00:58:11,336 DEBUG [Shutdown] davmail  - Stopping DavMail gateway
+2024-08-24 00:58:11,342 INFO  [Shutdown] davmail  - DavMail gateway stopped
+2024-08-24 00:58:58,388 DEBUG [main] davmail.DavGateway  - Headless mode, do not create GUI
+2024-08-24 00:58:58,388 DEBUG [main] davmail.DavGateway  - Start DavMail in server mode
+2024-08-24 00:58:58,415 INFO  [main] davmail  - DavMail Gateway 6.2.2-3546 listening on SMTP port 5003 IMAP port 5001 LDAP port 5002 
+2024-08-24 00:58:58,415 ERROR [main] davmail  - Unable to bind server socket for CALDAV on port 5000: port not allowed or in use by another process
+
+2024-08-24 00:58:58,471 DEBUG [CheckRelease] davmail.http.HttpClientAdapter  - GET https://davmail.sourceforge.net/version.txt
+2024-08-24 00:58:58,528 DEBUG [CheckRelease] davmail.http.DavGatewaySSLSocketFactory  - createSocket davmail.sourceforge.net 443
+2024-08-24 00:58:58,984 DEBUG [CheckRelease] davmail.DavGateway  - DavMail released version: 6.2.2-3546
+2024-08-24 01:02:25,930 DEBUG [Shutdown] davmail  - Stopping DavMail gateway
+2024-08-24 01:02:25,956 INFO  [Shutdown] davmail  - DavMail gateway stopped
+2024-08-24 01:02:27,763 DEBUG [main] davmail.DavGateway  - Headless mode, do not create GUI
+2024-08-24 01:02:27,763 DEBUG [main] davmail.DavGateway  - Start DavMail in server mode
+2024-08-24 01:02:27,782 INFO  [main] davmail  - DavMail Gateway 6.2.2-3546 listening on SMTP port 7003 IMAP port 7001 LDAP port 7002 
+2024-08-24 01:02:27,782 ERROR [main] davmail  - Unable to bind server socket for CALDAV on port 7000: port not allowed or in use by another process
+
+2024-08-24 01:02:27,831 DEBUG [CheckRelease] davmail.http.HttpClientAdapter  - GET https://davmail.sourceforge.net/version.txt
+2024-08-24 01:02:27,978 DEBUG [CheckRelease] davmail.http.DavGatewaySSLSocketFactory  - createSocket davmail.sourceforge.net 443
+2024-08-24 01:02:28,349 DEBUG [CheckRelease] davmail.DavGateway  - DavMail released version: 6.2.2-3546
+2024-08-24 01:05:20,023 DEBUG [davmail.imap.ImapServer] davmail  - Connection from /127.0.0.1 on port 7001
+2024-08-24 01:05:20,030 INFO  [davmail.imap.ImapServer] davmail.connection  - CONNECT - 127.0.0.1:59635 
+2024-08-24 01:05:20,366 DEBUG [ImapConnection-59635] davmail.http.DavGatewaySSLSocketFactory  - createSocket outlook.office365.com 443
+2024-08-24 01:05:20,676 DEBUG [ImapConnection-59635] davmail.exchange.ExchangeSession  - Test configuration status: 401
+2024-08-24 01:05:20,677 DEBUG [ImapConnection-59635] davmail  - > * OK [CAPABILITY IMAP4REV1 AUTH=LOGIN MOVE SPECIAL-USE UIDPLUS] IMAP4rev1 DavMail 6.2.2-3546 server ready
+2024-08-24 01:05:20,891 DEBUG [ImapConnection-59635] davmail  - < LOGIN ********
+2024-08-24 01:09:57,452 DEBUG [Shutdown] davmail  - Stopping DavMail gateway
+2024-08-24 01:09:57,460 INFO  [davmail.imap.ImapServer] davmail.connection  - DISCONNECT - 127.0.0.1:59635 
+2024-08-24 01:09:57,463 INFO  [Shutdown] davmail  - DavMail gateway stopped

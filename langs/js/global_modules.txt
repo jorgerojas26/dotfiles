@@ -1,0 +1,11 @@
+@bitwarden
+@react-native-community
+@vscode
+appcenter-cli
+eas-cli
+eslint_d
+ios-deploy
+nextui-cli
+serverless
+serverless-offline
+typescript

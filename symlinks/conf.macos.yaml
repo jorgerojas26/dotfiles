@@ -19,4 +19,8 @@
     ~/bin/zsh: /opt/homebrew/bin/zsh
     ~/.config: .config
     ~/Library/Application Support/lazygit/config.yml: git/lazygit/config.yml
-    
+    ~/mail: mail
+    ~/.msmtprc: .msmtprc
+    ~/.mbsyncrc: .mbsyncrc
+    ~/.gnupg: .gnupg
+    ~/.davmail: .davmail
