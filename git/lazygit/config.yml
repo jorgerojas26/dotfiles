@@ -79,9 +79,10 @@ git:
     disableForcePushing: false
     parseEmoji: false
     # diffContextSize: 3 # how many lines of context are shown around a change in diffs
-# os:
-    # edit: nvim --server /tmp/nvim-server-$(tmux display-message -p '#S')-$(tmux display-message -p '#I')-$(tmux display-message -p '#P').pipe --remote-send "<cmd> q! | edit "$(pwd)/{{filename}}" <CR>"
-    # editAtLine: nvim --server /tmp/nvim-server-$(tmux display-message -p '#S')-$(tmux display-message -p '#I')-$(tmux display-message -p '#P').pipe --remote-send "<cmd> q! | edit +{{line}} "$(pwd)/{{filename}}" <CR>"
+os:
+  editPreset: 'nvim'
+  # edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote-tab {{filename}})'
+  # edit: nvim --server /tmp/nvim-server-$(tmux display-message -p '#S')-$(tmux display-message -p '#I')-$(tmux display-message -p '#P').pipe --remote-send "<cmd> q! | edit "$(pwd)/{{filename}}" <CR>"
 refresher:
     refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
     fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
@@ -93,7 +94,7 @@ confirmOnQuit: false
 quitOnTopLevelReturn: false
 disableStartupPopups: false
 notARepository: "prompt" # one of: 'prompt' | 'create' | 'skip' | 'quit'
-promptToReturnFromSubprocess: true # display confirmation when subprocess terminates
+promptToReturnFromSubprocess: false # display confirmation when subprocess terminates
 keybinding:
     universal:
         quit: "q"
