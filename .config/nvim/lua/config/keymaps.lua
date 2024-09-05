@@ -51,11 +51,11 @@ map("n", "<leader>gl", "<cmd> diffget //3 <CR>", { desc = "Keep right" })
 map("n", "<leader>g-", "<cmd> G switch - <CR>", { desc = "Switch to last git branch" })
 
 -- HARPOON
-map("n", "<leader>h", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>")
-map("n", "<leader>ah", "<cmd>lua require'harpoon.mark'.add_file()<CR>")
-map("n", "<leader>[", "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>")
-map("n", "<leader>]", "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>")
-map("n", "<leader>\\", "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>")
+map("n", "<leader>h", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", { desc = "Harpoon quick menu" })
+map("n", "<leader>ah", "<cmd>lua require'harpoon.mark'.add_file()<CR>", { desc = "Harpoon add file" })
+map("n", "<leader>[", "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", { desc = "Harpoon nav file 1" })
+map("n", "<leader>]", "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", { desc = "Harpoon nav file 2" })
+map("n", "<leader>\\", "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", { desc = "Harpoon nav file 3" })
 
 map("n", "<leader>xc", ":g/console.lo/d<cr>", { desc = "Remove console.log of current file" })
 

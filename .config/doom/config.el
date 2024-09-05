@@ -47,11 +47,16 @@
 
 ;; Mail
 
-(require 'mu4e-icalendar)
-(gnus-icalendar-setup)
 
 (mu4e t)
 (require 'timezone)
+
+(require 'mu4e-icalendar)
+(gnus-icalendar-setup)
+
+(setq gnus-icalendar-org-capture-file "~/org/meetings.org")
+(setq gnus-icalendar-org-capture-headline '("Calendar"))
+(gnus-icalendar-org-setup)
 
 (setq mu4e-alert-email-notification-types '(subjects))
 
@@ -63,7 +68,7 @@
         message-send-mail-function #'message-send-mail-with-sendmail))
 
 
-(setq mu4e-attachment-dir "~/org")
+(setq mu4e-attachment-dir "~/org/attachments")
 
 (setq mu4e-update-interval 60)
 (setq mu4e-get-mail-command (concat (executable-find "mbsync") " -a"))
@@ -129,9 +134,44 @@
                       )
                     t)
 
+(set-email-account! "diana"
+                    '((mu4e-sent-folder       . "/diana/Sent")
+                      (mu4e-trash-folder      . "/diana/Trash")
+                      (mu4e-refile-folder     . "/diana/All Mail")
+                      (smtpmail-smtp-user     . "diana_camero15@hotmail.com")
+                      (user-mail-address      . "diana_camero15@hotmail.com")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "")
+                      (smtpmail-smtp-user . "diana_camero15@hotmail.com") ;
+                      (smtpmail-smtp-server   . "smtp-mail.outlook.com") ;
+                      (smtpmail-smtp-service . 587)
+                      (smtpmail-stream-type . ssl)
+                      )
+                    t)
+
 
 (setq mu4e-context-policy 'ask-if-none
       mu4e-compose-context-policy 'always-ask)
+
+(defun mu4e-pretty-mbsync-process-filter (proc msg)
+  (ignore-errors
+    (with-current-buffer (process-buffer proc)
+      (let ((inhibit-read-only t))
+        (delete-region (point-min) (point-max))
+        (insert (car (reverse (split-string msg "\r"))))
+        (when (re-search-backward "\\(C:\\).*\\(B:\\).*\\(M:\\).*\\(S:\\)")
+          (add-face-text-property
+           (match-beginning 1) (match-end 1) 'font-lock-keyword-face)
+          (add-face-text-property
+           (match-beginning 2) (match-end 2) 'font-lock-function-name-face)
+          (add-face-text-property
+           (match-beginning 3) (match-end 3) 'font-lock-builtin-face)
+          (add-face-text-property
+           (match-beginning 4) (match-end 4) 'font-lock-type-face))))))
+
+(advice-add
+ 'mu4e~get-mail-process-filter
+ :override #'mu4e-pretty-mbsync-process-filter)
+
 
 
 
@@ -140,6 +180,11 @@
 (setq org-alert-interval 300
       org-alert-notify-cutoff 10
       org-alert-notify-after-event-cutoff 10)
+
+
+(setq org-capture-templates
+      '(("m" "Meeting" entry (file "~/org/meetings.org")
+         "** Meeting with %? on %^T\n:PROPERTIES:\n:LOCATION: \n:END:\n")))
 
 ;; Company config
 (setq company-minimum-prefix-length 1)
@@ -214,8 +259,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "Jorge Rojas"
-      user-mail-address "jorgeluisrojasb@gmail.com")
+;; (setq user-full-name "Jorge Rojas"
+;;       user-mail-address "jorgeluisrojasb@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;

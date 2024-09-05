@@ -29,35 +29,14 @@ return {
       -- lua, default settings
       require("better_escape").setup({
         timeout = vim.o.timeoutlen,
-        default_mappings = true,
+        default_mappings = false,
         mappings = {
           i = {
             j = {
-              -- These can all also be functions
               k = "<Esc>",
+            },
+            k = {
               j = "<Esc>",
-            },
-          },
-          c = {
-            j = {
-              k = "<Esc>",
-              j = "<Esc>",
-            },
-          },
-          t = {
-            j = {
-              k = "<Esc>",
-              j = "<Esc>",
-            },
-          },
-          v = {
-            j = {
-              k = "<Esc>",
-            },
-          },
-          s = {
-            j = {
-              k = "<Esc>",
             },
           },
         },
@@ -90,7 +69,7 @@ return {
   --     })
   --   end,
   -- },
-  { "tpope/vim-fugitive" },
+  { "tpope/vim-fugitive", enabled = false },
   { "stefandtw/quickfix-reflector.vim" },
   { "ThePrimeagen/harpoon" },
   {
@@ -123,7 +102,7 @@ return {
       telescope.load_extension("project")
       telescope.load_extension("neoclip")
       telescope.load_extension("fzf")
-      telescope.load_extension("git_worktree")
+      -- telescope.load_extension("git_worktree")
       telescope.load_extension("harpoon")
     end,
     keys = {
@@ -211,23 +190,7 @@ return {
       -- },
     },
   },
-  { "ThePrimeagen/git-worktree.nvim" },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   cmd = "Copilot",
-  --   build = ":Copilot auth",
-  --   opts = {
-  --     suggestion = {
-  --       enabled = true,
-  --       auto_trigger = true,
-  --       debounce = 0,
-  --       keymap = {
-  --         accept = "<C-e>",
-  --       },
-  --     },
-  --     panel = { enabled = true },
-  --   },
-  -- },
+  { "ThePrimeagen/git-worktree.nvim", enabled = false },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -491,4 +454,5 @@ return {
   --     -- })
   --   end,
   -- },
+  -- Lua
 }

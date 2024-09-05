@@ -68,11 +68,8 @@ keybinds clear-defaults=true {
             SwitchToMode "normal"
         }
         bind "\\" {
-            Run "zellij" "run" "--floating" "--close-on-exit" "--width=100%" "--height=100%" "-x=0" "-y=0" "--name=lazysql" "--" "/Users/jorgerojas/.go/bin/lazysql" {
-                floating true
+            Run "zellij" "run" "--floating" "--close-on-exit" "--width=95%" "--height=95%" "-x=2%" "-y=2%" "--name=lazysql" "--" "lazysql" {
                 close_on_exit true
-                move_to_focused_tab true
-                move_to_focused_pane true
             }
             SwitchToMode "normal"
         }

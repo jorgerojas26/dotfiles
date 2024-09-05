@@ -1,35 +1,15 @@
 #!/bin/bash
 
-SESSION="lazysql"
-WINDOW="lazysql-session"
-PROGRAM="lazysql"
+# Nombre del popup
+popup_name="lazysql"
 
-tmux has-session -t $SESSION 2>/dev/null
+# Verifica si el popup ya existe y está visible
+popup_id=$(tmux list-panes -a -F "#{pane_id}:#{pane_title}" | grep ":${popup_name}$" | cut -d: -f1)
 
-if [ $? != 0 ]; then
-	# Si la sesión no existe, crearla y ejecutar lazysql
-	tmux new-session -d -s $SESSION 'lazysql'
-fi
-
-CURRENT_SESSION=$(tmux display-message -p '#S')
-
-if [ $CURRENT_SESSION != $SESSION ]; then
-	# Si la sesión actual no es la de lazysql, cambiar a la sesión de lazysql
-	tmux switch-client -t $SESSION
+if [ -n "$popup_id" ]; then
+    # Si el popup está abierto, ciérralo
+    tmux kill-pane -t "$popup_id"
 else
-	# Si la ventana de lazysql no existe, crearla
-	tmux list-windows -t $SESSION | grep -q $WINDOW
-	if [ $? != 0 ]; then
-		tmux new-window -t $SESSION -n $WINDOW 'lazysql'
-	else
-		CURRENT_WINDOW=$(tmux display-message -p '#W')
-
-		if [ $CURRENT_WINDOW == $WINDOW ]; then
-			tmux switch-client -l
-		else
-			tmux select-window -t $SESSION:$WINDOW
-		fi
-
-	fi
-
+    # Si el popup no está abierto, ábrelo
+    tmux display-popup -E -d '#{pane_current_path}' -w 90% -h 90% -T "${popup_name}" "lazysql"
 fi

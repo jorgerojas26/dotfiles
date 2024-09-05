@@ -24,3 +24,4 @@
     ~/.mbsyncrc: .mbsyncrc
     ~/.gnupg: .gnupg
     ~/.davmail: .davmail
+    ~/Library/LaunchAgents/sync-brain.plist: os/mac/brew/services/sync-brain.plist
