@@ -29,22 +29,22 @@ map("n", "<leader>pl", "<cmd> Telescope project theme=dropdown <CR>", { desc = "
 map("n", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
 map("i", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
 
--- map("n", "<leader>gs", function()
---   Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
--- end, { desc = "Lazygit (root dir)" })
+map("n", "<leader>gs", function()
+  Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
+end, { desc = "Lazygit (root dir)" })
 --
--- map("n", "<C-t>", function()
---   Util.terminal.open({ "lazysql" }, {
---     cwd = Util.root.get(),
---     ctrl_hjkl = false,
---     border = "rounded",
---     persistent = true,
---     title = "Lazysql",
---     title_pos = "center",
---   })
--- end, { desc = "Lazysql" })
+map("n", "<C-t>", function()
+  Util.terminal.open({ "lazysql" }, {
+    cwd = Util.root.get(),
+    ctrl_hjkl = false,
+    border = "rounded",
+    persistent = true,
+    title = "Lazysql",
+    title_pos = "center",
+  })
+end, { desc = "Lazysql" })
 
-map("n", "<leader>gs", "<cmd> Neogit kind=vsplit <CR>", { desc = "Git status" })
+-- map("n", "<leader>gs", "<cmd> Neogit kind=vsplit <CR>", { desc = "Git status" })
 -- map("n", "<leader>gs", "<cmd> vertical rightbelow G <CR>", { desc = "Git status" })
 map("n", "<leader>gf", "<cmd> diffget //2 <CR>", { desc = "Keep left" })
 map("n", "<leader>gl", "<cmd> diffget //3 <CR>", { desc = "Keep right" })

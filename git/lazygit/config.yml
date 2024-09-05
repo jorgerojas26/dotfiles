@@ -48,7 +48,7 @@ git:
     paging:
         colorArg: always
         useConfig: false
-        pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+        pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}" --diff-so-fancy
     commit:
         signOff: false
         # verbose: default # one of 'default' | 'always' | 'never'
