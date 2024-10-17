@@ -49,13 +49,19 @@
 
 
 (mu4e t)
+
 (require 'timezone)
+(set-time-zone-rule "America/Caracas")
+(setq org-icalendar-timezone "America/Caracas")
+;; (setenv "TZ" "America/Caracas")
+
 
 (require 'mu4e-icalendar)
 (gnus-icalendar-setup)
 
 (setq gnus-icalendar-org-capture-file "~/org/meetings.org")
 (setq gnus-icalendar-org-capture-headline '("Calendar"))
+(setq gnus-icalendar-default-timezone "America/Caracas")
 (gnus-icalendar-org-setup)
 
 (setq mu4e-alert-email-notification-types '(subjects))
@@ -177,14 +183,32 @@
 
 ;; Agenda
 (setq org-journal-enable-agenda-integration t)
-(setq org-alert-interval 300
+(add-to-list 'load-path "/Users/jorgerojas/.dotfiles/modules/org-alert")
+(require 'org-alert)
+
+(org-alert-enable)
+(setq org-alert-interval 60
       org-alert-notify-cutoff 10
-      org-alert-notify-after-event-cutoff 10)
+      org-alert-notify-after-event-cutoff 0
+      org-alert-time-match-string "<.*?\\([0-9]\\{2\\}:[0-9]\\{2\\}\\).*>"
+      )
+
+(setq alert-default-style 'osx-notifier)
+(setq org-alert-notification-title "Agenda reminder")
 
 
-(setq org-capture-templates
-      '(("m" "Meeting" entry (file "~/org/meetings.org")
-         "** Meeting with %? on %^T\n:PROPERTIES:\n:LOCATION: \n:END:\n")))
+
+;; (setq org-capture-templates
+;;       '(("m" "Meeting" entry (file+headline "~/org/meetings.org" "Calendar")
+;;          "* %^{meeting date}T Meeting with %^{meeting with} (%\\2) %?
+;;    :PROPERTIES:
+;;    :MEETWITH: %\\1
+;;    :DESCRIPTION: %\\3
+;;    :LOCATION: %^{meeting url}
+;;    :END:
+
+;;    Created on %U
+;;    Description: %^{description}", :jump-to-captured t :empty-lines 1)))
 
 ;; Company config
 (setq company-minimum-prefix-length 1)

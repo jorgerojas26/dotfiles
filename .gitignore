@@ -11,3 +11,5 @@
 .config/configstore/*
 .gnupg/*
 mail
+.config/aerc/accounts.conf
+.config/gcloud/*

@@ -53,7 +53,9 @@ keybindings:
   universal: []
   issues: []
   prs: []
-repoPaths: {}
+repoPaths: {
+  "jorgerojas26/lazysql": "~/projects/lazysql/"
+}
 theme:
   ui:
     sectionsShowCount: true

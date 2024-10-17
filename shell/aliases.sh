@@ -1,7 +1,7 @@
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ll="ls -l"

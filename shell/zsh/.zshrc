@@ -21,6 +21,11 @@ source "$DOTFILES_PATH/shell/init.sh"
 
 fpath=("$DOTFILES_PATH/shell/zsh/themes" "$DOTFILES_PATH/shell/zsh/completions" "$DOTLY_PATH/shell/zsh/themes" "$DOTLY_PATH/shell/zsh/completions" $fpath)
 
+source $DOTFILES_PATH/shell/zsh/completions/fzf-zsh-completion.sh
+bindkey '^I' fzf_completion
+export FZF_COMPLETION_OPTS='--border --info=inline --preview="bat --color=always {}"'
+
+
 # autoload -Uz promptinit && promptinit
 # prompt ${DOTLY_THEME:-codely}
 
@@ -366,3 +371,9 @@ if [ "$funcstack[1]" = "_supabase" ]; then
     _supabase
 fi
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jorgerojas/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jorgerojas/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jorgerojas/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jorgerojas/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
