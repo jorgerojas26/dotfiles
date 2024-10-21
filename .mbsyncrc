@@ -4,10 +4,10 @@ IMAPAccount jorge
 Host imap.gmail.com
 Port 993
 User jorgeluisrojasb@gmail.com
-PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorgeluisrojasb@gmail.com.gpg"
+PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorgeluisrojasb@gmail.com.gpg"
 AuthMechs LOGIN
-TLSType IMAPS
-TLSVersions +1.3
+SSLType IMAPS
+SSLVersions TLSv1.2
 
 IMAPStore gmail-remote
 Account jorge
@@ -33,26 +33,10 @@ Create Both
 Expunge Both
 SyncState *
 
-Channel gmail-starred
-Far :gmail-remote:"[Gmail]/Starred"
-Near :gmail-local:"Starred"
-Create Both
-Expunge Both
-SyncState *
-
-Channel gmail-trash
-Far :gmail-remote:"[Gmail]/Trash"
-Near :gmail-local:"Trash"
-Create Both
-Expunge Both
-SyncState *
 
 Group jorge
 Channel gmail-inbox
 Channel gmail-sent
-Channel gmail-starred
-Channel gmail-trash
-
 
 # =====================================================================
 
@@ -61,9 +45,9 @@ IMAPAccount andino
 Host 127.0.0.1
 Port 1143
 User jorge@andinotechnologies.com
-PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@andinotechnologies.com.gpg"
+PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@andinotechnologies.com.gpg"
 AuthMechs LOGIN
-TLSType None
+SSLType None
 
 IMAPStore andino-remote
 Account andino
@@ -80,7 +64,6 @@ Patterns *
 Create Both
 Expunge Both
 SyncState *
-Sync All
 
 # =====================================================================
 
@@ -89,10 +72,10 @@ IMAPAccount tila
 Host lithiumpr.mx
 Port 993
 User jorge@tila.app
-PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@tila.app.gpg"
+PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@tila.app.gpg"
 AuthMechs LOGIN
-TLSType IMAPS
-TLSVersions +1.3
+SSLType IMAPS
+SSLVersions TLSv1.2
 
 IMAPStore tila-remote
 Account tila
@@ -118,10 +101,10 @@ IMAPAccount baby-tila
 Host mail.babytila.app
 Port 993
 User jorge.rojas@babytila.app
-PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge.rojas@babytila.app.gpg"
+PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge.rojas@babytila.app.gpg"
 AuthMechs LOGIN
-TLSType IMAPS
-TLSVersions +1.3
+SSLType IMAPS
+SSLVersions TLSv1.2
 
 IMAPStore baby-tila-remote
 Account baby-tila
@@ -147,10 +130,10 @@ IMAPAccount diana
 Host outlook.office365.com
 Port 993
 User diana_camero15@hotmail.com
-PassCmd "gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-diana_camero15@hotmail.com.gpg"
-AuthMechs LOGIN
-TLSType IMAPS
-TLSVersions +1.3
+PassCmd "/Users/jorgerojas/.dotfiles/bin/mutt_oauth2.py -t ~/.dotfiles/passwords/.mbsyncpass-diana_camero15@hotmail.com.gpg"
+AuthMechs XOAUTH2
+SSLType IMAPS
+SSLVersions TLSv1.1 TLSv1.2
 
 IMAPStore diana-remote
 Account diana
@@ -167,4 +150,3 @@ Patterns *
 Create Both 
 Expunge Both
 SyncState *
-MaxMessages 1000
