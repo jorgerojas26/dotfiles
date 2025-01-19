@@ -15,15 +15,8 @@ attendees=$(echo "$ics_content" | awk -F 'mailto:' '{for (i=2; i<=NF; i++) print
 timezone=$(echo "$ics_content" | awk -F 'TZID:' '{print $2}' | tr -d '\n')
 location=$(echo "$ics_content" | awk -F 'X-GOOGLE-CONFERENCE:' '{print $2}' | tr -d '\n')
 
-echo "$timezone"
-echo "$my_timezone"
-
 formatted_start=$(echo "$start" | sed 's/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)T\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\2\/\3\/\1 \4:\5/')
 formatted_end=$(echo "$end" | sed 's/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)T\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\2\/\3\/\1 \4:\5/')
-
-echo "start: $formatted_start"
-echo "end: $formatted_end"
-
 converted_start="$formatted_start"
 converted_end="$formatted_end"
 
@@ -37,6 +30,8 @@ description+="Organizer: $organizer | "
 description+="Attendees: $attendees | "
 description+="Location: $location"
 
+description=$(echo "$description" | tr -d '\r')
+
 echo "$description"
 
 apts_file="$HOME/.local/share/calcurse/apts"
@@ -47,7 +42,9 @@ end_date=$(echo "$converted_end" | awk '{print $1}')
 end_date_time=$(echo "$converted_end" | awk '{print $2}')
 
 new_appointment=$(echo "$start_date @ $start_date_time -> $end_date @ $end_date_time|$description")
-new_appointment=$(echo "$new_appointment" | tr -d '\r')
+new_appointment=$(echo "$new_appointment")
 echo "$new_appointment"
+
+# grep -v -i "$summary" ~/.local/share/calcurse/apts >~/.local/share/calcurse/apts.tmp && mv ~/.local/share/calcurse/apts.tmp ~/.local/share/calcurse/apts
 
 echo "$new_appointment" >>"$apts_file"

@@ -6,6 +6,7 @@ config.font_size = 16
 config.default_cursor_style = "BlinkingBar"
 config.animation_fps = 60
 config.cursor_blink_rate = 500
+config.max_fps = 120
 
 config.window_padding = {
 	left = 0,

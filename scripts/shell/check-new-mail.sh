@@ -30,7 +30,7 @@ while IFS= read -r msgid; do
     echo "Path: $file_path"
 
     # Send a notification using terminal-notifier
-    /opt/homebrew/bin/terminal-notifier -title "New email for: $to" -subtitle "$sender" -message "Subject: $subject" -sound "default" -appIcon "/Users/jorgerojas/.dotfiles/scripts/shell/mail-icon.svg" -execute "/Users/jorgerojas/.dotfiles/raycast/script-commands/open-aerc.sh"
+    /opt/homebrew/bin/terminal-notifier -title "New email for: $to" -subtitle "$sender" -message "Subject: $subject" -sound "Submarine" -appIcon "/Users/jorgerojas/.dotfiles/scripts/shell/mail-icon.svg" -execute "/Users/jorgerojas/.dotfiles/raycast/script-commands/open-aerc.sh"
 
     # Mark the email as read by renaming the file to add the 'S' flag
     if [[ "$file_path" == *"new"* ]]; then

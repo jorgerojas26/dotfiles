@@ -2,7 +2,11 @@ local Util = require("lazyvim.util")
 
 return {
   { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false }, enabled = false },
-  { "catppuccin/nvim", name = "catppuccin", opts = { transparent_background = true } },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = { transparent_background = true, integrations = { blink_cmp = true } },
+  },
   -- { "rebelot/kanagawa.nvim" },
   -- { "rose-pine/neovim" },
   { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } },
@@ -72,62 +76,55 @@ return {
   { "tpope/vim-fugitive", enabled = false },
   { "stefandtw/quickfix-reflector.vim" },
   { "ThePrimeagen/harpoon" },
-  {
-    "AckslD/nvim-neoclip.lua",
-    config = function()
-      require("neoclip").setup()
-    end,
-  },
   { "airblade/vim-rooter" },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      local telescope = require("telescope")
-
-      telescope.setup({
-        defaults = {
-          mappings = {
-            i = {
-              ["<esc>"] = require("telescope.actions").close,
-            },
-            n = {
-              ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
-            },
-          },
-          -- buffer_previewer_maker = new_maker,
-        },
-      })
-
-      telescope.load_extension("project")
-      telescope.load_extension("neoclip")
-      telescope.load_extension("fzf")
-      -- telescope.load_extension("git_worktree")
-      telescope.load_extension("harpoon")
-    end,
-    keys = {
-
-      -- { "<leader>gs", mode = "n", "<cmd>Fugit2<cr>" },
-      -- { "<leader>gs", "<cmd> vertical rightbelow G <CR>", desc = "Fugitive status" },
-      -- { "<leader>gs", "<cmd> Neogit <CR>", desc = "Neogit status" },
-      {
-        "<leader>gs",
-        function()
-          Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
-        end,
-        desc = "Telescope bcommits",
-      },
-      { "<leader>sg", "<cmd> Telescope live_grep theme=ivy <CR>", desc = "Telescope live_grep" },
-      { "<leader>gc", "<cmd> Telescope git_bcommits theme=ivy <CR>", desc = "Telescope bcommits" },
-      { "<leader>gC", "<cmd> Telescope git_commits theme=ivy<CR>", desc = "Telescope commits" },
-      { "<leader>ss", "<cmd> Telescope treesitter <CR>", desc = "Treesitter symbols" },
-      -- {
-      --   "<leader>ff",
-      --   "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>",
-      --   desc = "Treesitter symbols",
-      -- },
-    },
-  },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   config = function()
+  --     local telescope = require("telescope")
+  --
+  --     telescope.setup({
+  --       defaults = {
+  --         mappings = {
+  --           i = {
+  --             ["<esc>"] = require("telescope.actions").close,
+  --           },
+  --           n = {
+  --             ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
+  --           },
+  --         },
+  --         -- buffer_previewer_maker = new_maker,
+  --       },
+  --     })
+  --
+  --     telescope.load_extension("project")
+  --     telescope.load_extension("neoclip")
+  --     telescope.load_extension("fzf")
+  --     -- telescope.load_extension("git_worktree")
+  --     telescope.load_extension("harpoon")
+  --   end,
+  --   keys = {
+  --
+  --     -- { "<leader>gs", mode = "n", "<cmd>Fugit2<cr>" },
+  --     -- { "<leader>gs", "<cmd> vertical rightbelow G <CR>", desc = "Fugitive status" },
+  --     -- { "<leader>gs", "<cmd> Neogit <CR>", desc = "Neogit status" },
+  --     {
+  --       "<leader>gs",
+  --       function()
+  --         Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
+  --       end,
+  --       desc = "Telescope bcommits",
+  --     },
+  --     { "<leader>sg", "<cmd> Telescope live_grep theme=ivy <CR>", desc = "Telescope live_grep" },
+  --     { "<leader>gc", "<cmd> Telescope git_bcommits theme=ivy <CR>", desc = "Telescope bcommits" },
+  --     { "<leader>gC", "<cmd> Telescope git_commits theme=ivy<CR>", desc = "Telescope commits" },
+  --     { "<leader>ss", "<cmd> Telescope treesitter <CR>", desc = "Treesitter symbols" },
+  --     -- {
+  --     --   "<leader>ff",
+  --     --   "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>",
+  --     --   desc = "Treesitter symbols",
+  --     -- },
+  --   },
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -210,36 +207,29 @@ return {
       },
     },
   },
-  { "lukas-reineke/indent-blankline.nvim", opts = { enabled = true } },
-  {
-    "brenoprata10/nvim-highlight-colors",
-    config = function()
-      require("nvim-highlight-colors").setup()
-    end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-      -- stylua: ignore
-      keys = {
-    { "<leader>du", function() require("dapui").toggle({reset = true }) end, desc = "Dap UI" },
-        { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-      },
-    opts = {},
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup(opts)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open({})
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close({})
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close({})
-      end
-    end,
-  },
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --     -- stylua: ignore
+  --     keys = {
+  --   { "<leader>du", function() require("dapui").toggle({reset = true }) end, desc = "Dap UI" },
+  --       { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+  --     },
+  --   opts = {},
+  --   config = function(_, opts)
+  --     local dap = require("dap")
+  --     local dapui = require("dapui")
+  --     dapui.setup(opts)
+  --     dap.listeners.after.event_initialized["dapui_config"] = function()
+  --       dapui.open({})
+  --     end
+  --     dap.listeners.before.event_terminated["dapui_config"] = function()
+  --       dapui.close({})
+  --     end
+  --     dap.listeners.before.event_exited["dapui_config"] = function()
+  --       dapui.close({})
+  --     end
+  --   end,
+  -- },
   -- {
   --   "pmizio/typescript-tools.nvim",
   --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -347,22 +337,53 @@ return {
       },
     },
   },
-  {
-    "cormacrelf/dark-notify",
-    config = function()
-      require("dark_notify").run()
-    end,
-  },
+  -- {
+  --   "cormacrelf/dark-notify",
+  --   config = function()
+  --     require("dark_notify").run()
+  --   end,
+  -- },
   {
     "supermaven-inc/supermaven-nvim",
     config = function()
-      require("supermaven-nvim").setup({
-        keymaps = {
-          accept_suggestion = "<C-e>",
-          clear_suggestion = "<C-]>",
-          accept_word = "<C-j>",
-        },
-      })
+      require("supermaven-nvim").setup({})
     end,
+  },
+  {
+    "saghen/blink.cmp",
+    dependencies = "rafamadriz/friendly-snippets",
+    -- use a release tag to download pre-built binaries
+    version = "*",
+    opts = {
+      completion = {
+        list = {
+          selection = {
+            preselect = false,
+            auto_insert = false,
+          },
+        },
+        menu = {
+          border = "single",
+          draw = {
+            components = {
+              kind_icon = {
+                ellipsis = false,
+                text = function(ctx)
+                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return kind_icon
+                end,
+                -- Optionally, you may also use the highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
+                end,
+              },
+            },
+          },
+        },
+        documentation = { window = { border = "single" } },
+      },
+      signature = { window = { border = "single" } },
+    },
   },
 }

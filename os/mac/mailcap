@@ -1,0 +1,5 @@
+application/ics; /usr/bin/calcurse -i %s && terminal-notifier -message "Entry added to calendar 📅" -title "Calendar"
+text/calendar; /usr/bin/calcurse -i %s && terminal-notifier -message "Entry added to calendar 📅" -title "Calendar"
+text/plain; vim %s
+text/html; vim %s
+

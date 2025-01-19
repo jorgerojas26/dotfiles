@@ -4,17 +4,10 @@ alias sudo='sudo '
 alias ls='eza --icons'
 alias ..="cd .."
 alias ...="cd ../.."
-alias ll="ls -l"
-alias la="ls -la"
+alias ll="eza --icons -l"
+alias la="eza --icons -la"
 alias ~="cd ~"
 alias dotfiles='cd $DOTFILES_PATH'
-function cd() {
-    new_directory="$*"
-    if [ $# -eq 0 ]; then
-        new_directory=${HOME}
-    fi
-    builtin cd "${new_directory}" && ls
-}
 
 # Git
 alias gaa="git add -A"
@@ -38,7 +31,7 @@ alias o.='open .'
 alias up='dot package update_all'
 alias nvim="nvim --listen /tmp/nvim-server-$(tmux display-message -p '#S')-$(tmux display-message -p '#I')-$(tmux display-message -p '#P').pipe"
 alias le='~/Library/Android/sdk/tools/emulator -list-avds'
-alias re='~/Library/Android/sdk/tools/emulator -avd $1'
 # alias zellij='zellij attach --index 0 --create'
 alias zellij='zellij'
 alias ec="emacsclient -a '' -c"
+alias lg="lazygit"
