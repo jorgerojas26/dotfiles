@@ -13,3 +13,9 @@
 mail
 .config/aerc/accounts.conf
 .config/gcloud/*
+.config/.android/*
+.config/.wrangler/*
+.config/_github_copilot/*
+.gemini/*
+attachments/
+.aider*

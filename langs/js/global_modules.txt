@@ -1,7 +1,9 @@
 @bitwarden
 @react-native-community
 @vscode
+album-art
 appcenter-cli
+corepack
 eas-cli
 eslint_d
 ios-deploy

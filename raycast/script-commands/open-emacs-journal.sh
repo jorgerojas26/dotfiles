@@ -11,9 +11,9 @@
 # Documentation:
 # @raycast.author Jorge Rojas
 
-appName="emacsclient"
+# appName="emacsclient"
 
-emacs_is_running=$(if pgrep -x "$appName" >/dev/null; then echo "true"; else echo "false"; fi)
+# emacs_is_running=$(if pgrep -x "$appName" >/dev/null; then echo "true"; else echo "false"; fi)
 
 # if [ "$emacs_is_running" == "true" ]; then
 #     frontApp=$(osascript -e 'tell application "System Events" to get name of first application process whose frontmost is true')
@@ -38,8 +38,8 @@ emacs_is_running=$(if pgrep -x "$appName" >/dev/null; then echo "true"; else ech
 #     /Applications/Emacs.app/Contents/MacOS/bin-arm64-11/emacsclient -c -e "(org-journal-new-entry nil)" -e "(add-to-list 'default-frame-alist '(height . 100))" -e "(select-frame-set-input-focus (selected-frame))" &
 # fi
 
-if [ "$emacs_is_running" == "true" ]; then
-    open -a "Emacs"
-else
-    /Applications/Emacs.app/Contents/MacOS/bin-arm64-11/emacsclient -c -e "(org-journal-new-entry nil)" -e "(add-to-list 'default-frame-alist '(height . 100))" -e "(select-frame-set-input-focus (selected-frame))"
-fi
+# if [ "$emacs_is_running" == "true" ]; then
+#     open -a "Emacs"
+# else
+/Applications/Emacs.app/Contents/MacOS/bin-arm64-11/emacsclient -c -e "(org-journal-new-entry nil)" -e "(add-to-list 'default-frame-alist '(height . 100))" -e "(select-frame-set-input-focus (selected-frame))"
+# fi

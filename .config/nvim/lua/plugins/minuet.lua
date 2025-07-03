@@ -1,0 +1,66 @@
+return {}
+-- return {
+--   {
+--     "milanglacier/minuet-ai.nvim",
+--     config = function()
+--       require("minuet").setup({
+--         cmp = {
+--           enable_auto_complete = false,
+--         },
+--         blink = {
+--           enable_auto_complete = false,
+--         },
+--         virtualtext = {
+--           auto_trigger_ft = { "lua", "typescript", "python", "javascript", "typescriptreact", "javascriptreact" },
+--           keymap = {
+--             -- accept whole completion
+--             accept = "<Tab>",
+--             -- accept one line
+--             accept_line = "<C-e>",
+--             -- accept n lines (prompts for number)
+--             -- e.g. "A-z 2 CR" will accept 2 lines
+--             accept_n_lines = "<A-z>",
+--             -- Cycle to prev completion item, or manually invoke completion
+--             prev = "[",
+--             -- Cycle to next completion item, or manually invoke completion
+--             next = "]",
+--             dismiss = "<C-E>",
+--           },
+--         },
+--         provider = "openai_compatible",
+--         provider_options = {
+--           openai_compatible = {
+--             model = "google/gemini-2.0-flash-lite-001",
+--             end_point = "https://openrouter.ai/api/v1/chat/completions",
+--             api_key = "OPENROUTER_API_KEY",
+--             name = "Openrouter",
+--             optional = {
+--               generationConfig = {
+--                 maxOutputTokens = 256,
+--                 -- When using `gemini-2.5-flash`, it is recommended to entirely
+--                 -- disable thinking for faster completion retrieval.
+--                 thinkingConfig = {
+--                   thinkingBudget = 0,
+--                 },
+--               },
+--               safetySettings = {
+--                 {
+--                   -- HARM_CATEGORY_HATE_SPEECH,
+--                   -- HARM_CATEGORY_HARASSMENT
+--                   -- HARM_CATEGORY_SEXUALLY_EXPLICIT
+--                   category = "HARM_CATEGORY_DANGEROUS_CONTENT",
+--                   -- BLOCK_NONE
+--                   threshold = "BLOCK_ONLY_HIGH",
+--                 },
+--               },
+--             },
+--           },
+--         },
+--         debounce = 100,
+--       })
+--     end,
+--   },
+--   { "nvim-lua/plenary.nvim" },
+--   -- optional, if you are using virtual-text frontend, nvim-cmp is not
+--   -- required.
+-- }

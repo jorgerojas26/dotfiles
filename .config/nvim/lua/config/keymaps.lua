@@ -4,8 +4,6 @@
 
 -- This file is automatically loaded by lazyvim.plugins.config
 
-local Util = require("lazyvim.util")
-
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
   ---@cast keys LazyKeysHandler
@@ -17,31 +15,29 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- CodeCompanion
+-- map("n", "<leader>ia", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "CodeCompanion" })
+map("n", "<leader>ia", "<cmd>AvanteToggle<CR>", { desc = "IA Chat" })
+
 map("n", "<leader>fs", "<cmd> update <CR>", { desc = "Save file" })
 map("n", "<leader>fq", "<cmd> q <CR>", { desc = "Quit buffer" })
 map("n", "<leader>l", "<cmd> b# <CR>", { desc = "Go to last buffer" })
 
-map("n", "<leader>fl", "<cmd> Telescope resume <CR>", { desc = "Telescope resume" })
-map("n", "<leader>gb", "<cmd> Telescope git_branches <CR>", { desc = "Telescope branches" })
+map("n", "<leader>fl", "<cmd> FzfLua resume <CR>", { desc = "Telescope resume" })
+-- map("n", "<leader>gb", "<cmd> Telescope git_branches <CR>", { desc = "Telescope branches" })
 
-map("n", "<leader>pl", "<cmd> Telescope project theme=dropdown <CR>", { desc = "Telescope project" })
+-- map("n", "<leader>pl", "<cmd> Telescope project theme=dropdown <CR>", { desc = "Telescope project" })
 
-map("n", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
-map("i", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
+-- map("n", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
+-- map("i", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
 
 map("n", "<leader>gs", function()
-  Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
+  -- Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
+  Snacks.lazygit.open({})
 end, { desc = "Lazygit (root dir)" })
 --
 map("n", "<C-t>", function()
-  Util.terminal.open({ "lazysql" }, {
-    cwd = Util.root.get(),
-    ctrl_hjkl = false,
-    border = "rounded",
-    persistent = true,
-    title = "Lazysql",
-    title_pos = "center",
-  })
+  Snacks.terminal.open({ "lazysql" })
 end, { desc = "Lazysql" })
 
 -- map("n", "<leader>gs", "<cmd> Neogit kind=vsplit <CR>", { desc = "Git status" })
@@ -113,3 +109,10 @@ map("n", "<C-s>", "<cmd> Telescope projections <CR>")
 
 map("n", "<c-->", "<cmd> Terminal <CR>", { desc = "Terminal (Root Dir)" })
 map("t", "<c-->", "<cmd>bw! <CR>", { desc = "Remove terminal" })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesActionRename",
+  callback = function(event)
+    Snacks.rename.on_rename_file(event.data.from, event.data.to)
+  end,
+})

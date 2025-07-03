@@ -1,0 +1,16 @@
+[calendars]
+
+[[private11]]
+path = /Users/jorgerojas/.local/share/khal/calendars/private11
+type = calendar
+color = yellow
+
+[locale]
+timeformat = %I:%M %p
+dateformat = %d/%m/%Y
+longdateformat = %d/%m/%Y
+datetimeformat = %d/%m/%Y %I:%M %p
+longdatetimeformat = %d/%m/%Y %I:%M %p
+
+[default]
+default_calendar = private11

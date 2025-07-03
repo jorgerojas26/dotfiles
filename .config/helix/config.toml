@@ -1,0 +1,26 @@
+theme = "catppuccin_mocha"
+
+[editor]
+# evil = true
+
+[keys.normal]
+C-r = ":config-reload"
+p = ["paste_clipboard_after", "collapse_selection"]
+P = ["paste_clipboard_before", "collapse_selection"]
+y = {y = ["select_line_below", "yank_main_selection_to_clipboard", "collapse_selection", "goto_first_nonwhitespace"]}
+Y = ["select_line_below", "yank_main_selection_to_clipboard", "collapse_selection", "goto_first_nonwhitespace"]
+"D" = ["collapse_selection", "select_mode", "goto_line_end", "delete_selection"]
+
+# d = { d = ["extend_line_below","yank_main_selection_to_clipboard","extend_line_below", "delete_selection"] }
+
+# [keys.normal.d]
+# d = ["extend_line_below","yank_main_selection_to_clipboard","extend_line_below", "delete_selection"]
+# t = ["extend_till_char"]
+# s = ["surround_delete"]
+# i = ["select_textobject_inner"]
+# a = ["select_textobject_around"]
+# j = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank_main_selection_to_clipboard", "extend_line_below", "delete_selection", "normal_mode"]
+
+[keys.insert]
+j = {k = "normal_mode"}
+k = {j = "normal_mode"}

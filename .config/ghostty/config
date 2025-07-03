@@ -1,5 +1,10 @@
 font-family = "FiraCode Nerd Font Mono"
 font-size = 16
-theme = "catppuccin-mocha"
+theme = dark:catppuccin-mocha,light:catppuccin-latte
 window-decoration = false
 window-theme = "auto"
+keybind = global:cmd+shift+enter=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-animation-duration = 0
+quick-terminal-screen = macos-menu-bar
+quick-terminal-autohide = false

@@ -3,33 +3,49 @@ return {}
 --   "yetone/avante.nvim",
 --   event = "VeryLazy",
 --   lazy = false,
---   version = false, -- set this if you want to always pull the latest change
+--   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
 --   opts = {
---     provider = "ollama",
+--     -- add any opts here
+--     -- for example
+--     provider = "openrouter_gemini_pro",
+--     -- gemini = {
+--     --   model = "gemini-2.0-pro-exp-02-05	",
+--     -- },
+--     auto_suggestions_provider = "openrouter_gemini_flash",
+--     behaviour = {
+--       auto_suggestions = true, -- Experimental stage
+--     },
+--     mappings = {
+--       suggestion = {
+--         accept = "<Tab>",
+--         next = "<C-]>",
+--         prev = "<C-[>",
+--         dismiss = "<M-]>",
+--       },
+--     },
+--     -- openai = {
+--     --   endpoint = "https://api.openai.com/v1",
+--     --   model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+--     --   timeout = 30000, -- timeout in milliseconds
+--     --   temperature = 0, -- adjust if needed
+--     --   max_tokens = 4096,
+--     --   -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+--     -- },
+--     -- rag_service = {
+--     --   enabled = true,
+--     -- },
 --     vendors = {
---       ollama = {
---         ["local"] = true,
---         endpoint = "127.0.0.1:11434/v1",
---         model = "deepseek-coder:6.7b",
---         parse_curl_args = function(opts, code_opts)
---           return {
---             url = opts.endpoint .. "/chat/completions",
---             headers = {
---               ["Accept"] = "application/json",
---               ["Content-Type"] = "application/json",
---               ["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyMmY5YmU0LWQ3NjMtNDUxOS05ZmFhLWY5NzE2YmNmNTNkYSJ9.wtjTurX7xXoRrxQ5YrtTCalOQ3KAagWeQfougq2QVC4",
---             },
---             body = {
---               model = opts.model,
---               messages = require("avante.providers").copilot.parse_messages(code_opts), -- you can make your own message, but this is very advanced
---               -- max_tokens = 2048,
---               stream = true,
---             },
---           }
---         end,
---         parse_response_data = function(data_stream, event_state, opts)
---           require("avante.providers").copilot.parse_response(data_stream, event_state, opts)
---         end,
+--       openrouter_gemini_pro = {
+--         __inherited_from = "openai",
+--         endpoint = "https://openrouter.ai/api/v1",
+--         api_key_name = "OPENROUTER_API_KEY",
+--         model = "google/gemini-2.5-pro-preview",
+--       },
+--       openrouter_gemini_flash = {
+--         __inherited_from = "openai",
+--         endpoint = "https://openrouter.ai/api/v1",
+--         api_key_name = "OPENROUTER_API_KEY",
+--         model = "google/gemini-2.0-flash-lite-001",
 --       },
 --     },
 --   },
@@ -42,8 +58,12 @@ return {}
 --     "nvim-lua/plenary.nvim",
 --     "MunifTanjim/nui.nvim",
 --     --- The below dependencies are optional,
+--     "echasnovski/mini.pick", -- for file_selector provider mini.pick
+--     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+--     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+--     "ibhagwan/fzf-lua", -- for file_selector provider fzf
 --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
---     -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+--     "zbirenbaum/copilot.lua", -- for providers='copilot'
 --     {
 --       -- support for image pasting
 --       "HakonHarnes/img-clip.nvim",

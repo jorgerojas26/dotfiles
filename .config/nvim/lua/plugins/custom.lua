@@ -1,5 +1,3 @@
-local Util = require("lazyvim.util")
-
 return {
   { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false }, enabled = false },
   {
@@ -9,7 +7,7 @@ return {
   },
   -- { "rebelot/kanagawa.nvim" },
   -- { "rose-pine/neovim" },
-  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin-mocha" } },
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
@@ -48,7 +46,7 @@ return {
     end,
   },
   { "nvim-telescope/telescope-fzf-native.nvim" },
-  { "nvim-telescope/telescope-project.nvim" },
+  -- { "nvim-telescope/telescope-project.nvim" },
   -- {
   --   "windwp/nvim-autopairs",
   --   config = function()
@@ -135,6 +133,17 @@ return {
       indent = {
         enable = false,
         disable = { "go" },
+      },
+      highlight = {
+        enable = true,
+        disable = function(_, buf)
+          local max_filesize = 10000 * 1024 -- 10 MB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_filesize then
+            vim.notify("Tree sitter disabled")
+            return true
+          end
+        end,
       },
       ignore_install = { "org" },
     },
@@ -285,18 +294,11 @@ return {
   },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, "biome")
-      -- table.insert(opts.ensure_installed, "prettierd")
-      -- table.insert(opts.ensure_installed, "eslint_d")
-    end,
-  },
-  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
         ["javascript"] = { "biome" },
+        ["astro"] = { "biome" },
         ["javascriptreact"] = { "biome" },
         ["typescript"] = { "biome" },
         ["typescriptreact"] = { "biome" },
@@ -312,27 +314,12 @@ return {
         ["markdown.mdx"] = { "biome" },
         ["graphql"] = { "biome" },
         ["handlebars"] = { "biome" },
+        -- ["sql"] = { "sqlfluff" },
       },
-    },
-  },
-  {
-    "echasnovski/mini.files",
-    version = "*",
-    opts = {
-      keys = {
-        {
-          "<leader>fm",
-          function()
-            require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-          end,
-          desc = "Open mini.files (directory of current file)",
-        },
-        {
-          "<leader>fM",
-          function()
-            require("mini.files").open(vim.loop.cwd(), true)
-          end,
-          desc = "Open mini.files (cwd)",
+      formatters = {
+        sqlfluff = {
+          cwd = require("conform.util").root_file({ "deno.json" }),
+          append_args = { "--dialect", "postgres" },
         },
       },
     },
@@ -343,12 +330,12 @@ return {
   --     require("dark_notify").run()
   --   end,
   -- },
-  {
-    "supermaven-inc/supermaven-nvim",
-    config = function()
-      require("supermaven-nvim").setup({})
-    end,
-  },
+  -- {
+  --   "supermaven-inc/supermaven-nvim",
+  --   config = function()
+  --     require("supermaven-nvim").setup({})
+  --   end,
+  -- },
   {
     "saghen/blink.cmp",
     dependencies = "rafamadriz/friendly-snippets",
@@ -386,4 +373,5 @@ return {
       signature = { window = { border = "single" } },
     },
   },
+  { "sindrets/diffview.nvim" },
 }

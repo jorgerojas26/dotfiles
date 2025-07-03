@@ -1,6 +1,8 @@
 #!/bin/bash
 
+echo "Getting next appointment..."
 next_appointment=$(calcurse -n)
+echo "$next_appointment"
 
 title="Next appointment"
 summary=$(echo "$next_appointment" | awk -F '|' '{print $1}' | sed 's/Summary: //g' | tr -d '\n' | sed 's/next appointment:   //g')

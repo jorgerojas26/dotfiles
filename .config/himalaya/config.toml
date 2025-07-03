@@ -1,0 +1,15 @@
+[accounts.jorge]
+default = true
+email = "jorgeluisrojasb@gmail.com"
+display-name = "Jorge Rojas"
+downloads-dir = "/Users/jorgerojas/Downloads"
+backend.type = "maildir"
+backend.root-dir = "/Users/jorgerojas/mail/gmail"
+backend.maildirpp = false
+message.send.backend.type = "smtp"
+message.send.backend.host = "smtp.gmail.com"
+message.send.backend.port = 465
+message.send.backend.login = "jorgeluisrojasb@gmail.com"
+message.send.backend.encryption.type = "tls"
+message.send.backend.auth.type = "password"
+message.send.backend.auth.command = "/opt/homebrew/bin/gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.dotfiles/passwords/.mbsyncpass-jorgeluisrojasb@gmail.com.gpg"

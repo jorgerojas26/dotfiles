@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Create temporary files
+TMPFILE=$(mktemp)
+
+# Read the email content from stdin and save to temporary file
+cat >"$TMPFILE"
+
+echo "tmpfile: $TMPFILE"
+
+if calcurse --import "$TMPFILE" >/dev/null 2>&1; then
+    echo "Events force-imported into calcurse successfully"
+else
+    echo "Error: Failed to import events into calcurse"
+    rm "$TMPFILE"
+    exit 1
+fi
+
+# Clean up
+# rm "$TMPFILE"
+
+# Exit successfully
+exit 0

@@ -1,0 +1,119 @@
+#!/bin/sh
+
+# History file to track imported events
+HISTORY_FILE="$HOME/.local/share/calcurse/ics_import_history"
+
+# Create history directory if it doesn't exist
+mkdir -p "$(dirname "$HISTORY_FILE")"
+touch "$HISTORY_FILE"
+
+# Create temporary files
+TMPFILE=$(mktemp)
+FILTERED_ICS=$(mktemp)
+
+# Read the email content from stdin and save to temporary file
+cat >"$TMPFILE"
+
+# Initialize variables for processing
+in_event=0
+current_event=""
+current_fingerprint=""
+new_events=0
+found_begin=0
+
+# Event properties for fingerprint
+uid=""
+dtstart=""
+summary=""
+
+# First pass: check if this is a valid ICS file
+while IFS= read -r line; do
+    if echo "$line" | grep -q "^BEGIN:VCALENDAR"; then
+        found_begin=1
+        echo "$line" >>"$FILTERED_ICS"
+    elif [ "$found_begin" -eq 1 ]; then
+        echo "$line" >>"$FILTERED_ICS"
+    fi
+done <"$TMPFILE"
+
+if [ "$found_begin" -eq 0 ]; then
+    echo "Error: Not a valid ICS file"
+    rm "$TMPFILE" "$FILTERED_ICS"
+    exit 1
+fi
+
+# Reset filtered ICS file
+>"$FILTERED_ICS"
+
+# Process the ICS file line by line
+while IFS= read -r line; do
+    if echo "$line" | grep -q "^BEGIN:VCALENDAR"; then
+        echo "$line" >>"$FILTERED_ICS"
+    elif echo "$line" | grep -q "^BEGIN:VEVENT"; then
+        in_event=1
+        current_event="$line"$'\n'
+        # Reset event properties
+        uid=""
+        dtstart=""
+        summary=""
+    elif [ $in_event -eq 1 ]; then
+        current_event="$current_event$line"$'\n'
+
+        # Collect event properties
+        if echo "$line" | grep -q "^UID:"; then
+            uid=$(echo "$line" | cut -d':' -f2- | tr -d '\r')
+        elif echo "$line" | grep -q "^DTSTART"; then
+            dtstart=$(echo "$line" | cut -d':' -f2- | tr -d '\r')
+        elif echo "$line" | grep -q "^SUMMARY:"; then
+            summary=$(echo "$line" | cut -d':' -f2- | tr -d '\r')
+        fi
+
+        if echo "$line" | grep -q "^END:VEVENT"; then
+            in_event=0
+
+            # Create event fingerprint using available properties
+            if [ -n "$uid" ] && [ -n "$dtstart" ] && [ -n "$summary" ]; then
+                current_fingerprint=$(printf "%s|%s|%s" "$uid" "$dtstart" "$summary" | sha256sum | cut -d' ' -f1)
+            elif [ -n "$dtstart" ] && [ -n "$summary" ]; then
+                current_fingerprint=$(printf "%s|%s" "$dtstart" "$summary" | sha256sum | cut -d' ' -f1)
+            else
+                echo "Warning: Event missing required properties (DTSTART and SUMMARY), skipping"
+                continue
+            fi
+
+            # Check if event has been imported before
+            if ! grep -q "^$current_fingerprint$" "$HISTORY_FILE"; then
+                echo "$current_event" >>"$FILTERED_ICS"
+                new_events=1
+                # Add to history file
+                echo "$current_fingerprint" >>"$HISTORY_FILE"
+            else
+                echo "Skipping already imported event: $summary"
+            fi
+        fi
+    elif echo "$line" | grep -q "^END:VCALENDAR"; then
+        echo "$line" >>"$FILTERED_ICS"
+    elif [ $in_event -eq 0 ]; then
+        # Write non-event lines (headers, etc.)
+        echo "$line" >>"$FILTERED_ICS"
+    fi
+done <"$TMPFILE"
+
+if [ "$new_events" -eq 1 ]; then
+    # Import only the filtered ICS with new events
+    if calcurse --import "$FILTERED_ICS" >/dev/null 2>&1; then
+        echo "New events imported into calcurse successfully"
+    else
+        echo "Error: Failed to import events into calcurse"
+        rm "$TMPFILE" "$FILTERED_ICS"
+        exit 1
+    fi
+else
+    echo "No new events to import"
+fi
+
+# Clean up
+rm "$TMPFILE" "$FILTERED_ICS"
+
+# Exit successfully
+exit 0

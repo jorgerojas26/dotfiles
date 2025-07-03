@@ -27,7 +27,7 @@ if vim.g.neovide then
 
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
   vim.g.neovide_transparency = 0.3
-  vim.g.transparency = 0.4
+  vim.g.transparency = 0.7
   vim.g.neovide_background_color = "#1E1E2D" .. alpha()
   vim.g.neovide_window_blurred = true
   vim.g.cmdheight = 0
@@ -40,3 +40,8 @@ if vim.g.neovide then
   vim.keymap.set("t", "<D-v>", '<C-\\><C-n>"+Pi', { noremap = true })
   vim.keymap.set("t", "<D-c>", '"+y<CR>') -- Copy
 end
+
+vim.g.snacks_animate = false
+
+vim.g.codecompanion_auto_tool_mode = true
+vim.g.lazyvim_prettier_needs_config = true

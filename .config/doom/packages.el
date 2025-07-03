@@ -50,17 +50,49 @@
 ;; (unpin! t)
 
 (package! catppuccin-theme)
+(package! all-the-icons)
 (package! biomejs-format)
 (package! deno-fmt)
+
+;; Use system-installed mu4e
+(package! mu4e :built-in 'prefer)
 
 ;; Org mode
 (package! org-super-agenda)
 (package! comment-tags)
+(package! svg-tag-mode
+  :recipe (:host github :repo "rougier/svg-tag-mode"))
+
+;; (package! nano-emacs
+;;   :recipe (:host github :repo "rougier/nano-emacs"))
+
+
+;; (package! mu4e-thread-folding
+;; :recipe (:host github :repo "rougier/mu4e-thread-folding"))
+
 
 (unpin! org-roam)
 (package! org-roam-ui)
 (package! org-ql)
+(package! org-timed-alerts
+  :recipe (:host github :repo "legalnonsense/org-timed-alerts"))
+
+                                        ; (package! eaf :recipe (:local-repo "/Users/jorgerojas/.config/.emacs.d/site-lisp/emacs-application-framework/"))
+(package! exec-path-from-shell)
+
+(package! mu4e-dashboard
+  :recipe (:host github :repo "rougier/mu4e-dashboard"))
+
 (package! org-msg
   :recipe (:host github :repo "danielfleischer/org-msg" :branch "1.12")
   :pin "4dcd70f")
 
+(package! mu4e-thread-folding
+  :recipe (:host github :repo "rougier/mu4e-thread-folding"))
+
+(package! mu4e-alert)
+
+
+
+; (package! org-modern :recipe (:host github :repo "minad/org-modern"))
+; (package! olivetti :recipe(:host github :repo "rnkn/olivetti"))

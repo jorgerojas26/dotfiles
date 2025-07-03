@@ -15,7 +15,8 @@ Account jorge
 MaildirStore gmail-local
 Path ~/mail/gmail/
 Inbox ~/mail/gmail/INBOX
-# SubFolders Verbatim
+SubFolders Verbatim
+
 
 Channel gmail-inbox
 Far :gmail-remote:
@@ -33,10 +34,18 @@ Create Both
 Expunge Both
 SyncState *
 
+Channel gmail-draft
+Far :gmail-remote:"[Gmail]/Borradores"
+Near :gmail-local:"Borradores"
+Create Both
+Expunge Both
+SyncState *
+
 
 Group jorge
 Channel gmail-inbox
 Channel gmail-sent
+Channel gmail-draft
 
 # =====================================================================
 
@@ -68,60 +77,60 @@ SyncState *
 # =====================================================================
 
 # Tila Mail account
-IMAPAccount tila
-Host lithiumpr.mx
-Port 993
-User jorge@tila.app
-PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@tila.app.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-SSLVersions TLSv1.2
-
-IMAPStore tila-remote
-Account tila
-
-MaildirStore tila-local
-Path ~/mail/tila/
-Inbox ~/mail/tila/Inbox
-# SubFolders Verbatim
-
-Channel tila
-Far :tila-remote:
-Near :tila-local:
-Patterns *
-Create Both 
-Expunge Both
-SyncState *
-MaxMessages 1000
+# IMAPAccount tila
+# Host lithiumpr.mx
+# Port 993
+# User jorge@tila.app
+# PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@tila.app.gpg"
+# AuthMechs LOGIN
+# SSLType IMAPS
+# SSLVersions TLSv1.2
+#
+# IMAPStore tila-remote
+# Account tila
+#
+# MaildirStore tila-local
+# Path ~/mail/tila/
+# Inbox ~/mail/tila/Inbox
+# # SubFolders Verbatim
+#
+# Channel tila
+# Far :tila-remote:
+# Near :tila-local:
+# Patterns *
+# Create Both 
+# Expunge Both
+# SyncState *
+# MaxMessages 1000
 
 # =====================================================================
 
 # Baby TILA Mail account
-IMAPAccount baby-tila
-Host mail.babytila.app
-Port 993
-User jorge.rojas@babytila.app
-PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge.rojas@babytila.app.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-SSLVersions TLSv1.2
-
-IMAPStore baby-tila-remote
-Account baby-tila
-
-MaildirStore baby-tila-local
-Path ~/mail/baby-tila/
-Inbox ~/mail/baby-tila/Inbox
-# SubFolders Verbatim
-
-Channel baby-tila
-Far :baby-tila-remote:
-Near :baby-tila-local:
-Patterns *
-Create Both 
-Expunge Both
-SyncState *
-MaxMessages 1000
+# IMAPAccount baby-tila
+# Host mail.babytila.app
+# Port 993
+# User jorge.rojas@babytila.app
+# PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge.rojas@babytila.app.gpg"
+# AuthMechs LOGIN
+# SSLType IMAPS
+# SSLVersions TLSv1.2
+#
+# IMAPStore baby-tila-remote
+# Account baby-tila
+#
+# MaildirStore baby-tila-local
+# Path ~/mail/baby-tila/
+# Inbox ~/mail/baby-tila/Inbox
+# # SubFolders Verbatim
+#
+# Channel baby-tila
+# Far :baby-tila-remote:
+# Near :baby-tila-local:
+# Patterns *
+# Create Both 
+# Expunge Both
+# SyncState *
+# MaxMessages 1000
 
 # =====================================================================
 

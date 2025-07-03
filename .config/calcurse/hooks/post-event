@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# History file path
+HISTORY_FILE="$HOME/.local/share/calcurse/ics_import_history"
+
+# Check if this is a deletion operation
+if [ "$CALCURSE_EVENT_ACTION" = "DELETE" ]; then
+    # Get event details from environment variables
+    EVENT_START="$CALCURSE_EVENT_START_DATE$CALCURSE_EVENT_START_TIME"
+    EVENT_TITLE="$CALCURSE_EVENT_TITLE"
+    
+    # Create the same fingerprint format as in the import script
+    # First try with just date and title since we don't have UID here
+    EVENT_FINGERPRINT=$(printf "%s|%s" "$EVENT_START" "$EVENT_TITLE" | sha256sum | cut -d' ' -f1)
+    
+    # Create a temporary file
+    TEMP_FILE=$(mktemp)
+    
+    # Remove the fingerprint from history file if it exists
+    grep -v "^$EVENT_FINGERPRINT$" "$HISTORY_FILE" > "$TEMP_FILE"
+    
+    # Replace the original file with the filtered one
+    mv "$TEMP_FILE" "$HISTORY_FILE"
+fi
+
+exit 0 

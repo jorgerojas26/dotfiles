@@ -1,4 +1,4 @@
-- clean: ['~']
+- clean: ["~"]
 
 - defaults:
     link:
@@ -26,3 +26,4 @@
     ~/.davmail: .davmail
     ~/Library/LaunchAgents/sync-brain.plist: os/mac/brew/services/sync-brain.plist
     ~/.mailcap: os/mac/mailcap
+    ~/.gemini: .gemini
