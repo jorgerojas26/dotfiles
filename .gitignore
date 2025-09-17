@@ -19,3 +19,6 @@ mail
 .gemini/*
 attachments/
 .aider*
+.config/@smartthings/cli
+.config/nchat
+.gemini/history
