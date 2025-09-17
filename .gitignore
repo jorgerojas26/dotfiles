@@ -22,3 +22,9 @@ attachments/
 .config/@smartthings/cli
 .config/nchat
 .gemini/history
+shell/zsh/.zim/modules/zsh-autosuggestions
+modules/org-alert
+emacs-packages/org-agenda-dashboard
+.config/nv
+.config/emacs
+.config/emacs
