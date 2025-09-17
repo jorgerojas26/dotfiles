@@ -1,13 +1,13 @@
 return {
-  { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false }, enabled = false },
+  { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false } },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = { transparent_background = true, integrations = { blink_cmp = true } },
+    enabled = false,
   },
-  -- { "rebelot/kanagawa.nvim" },
   -- { "rose-pine/neovim" },
-  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin-mocha" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "tokyonight" } },
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
