@@ -92,7 +92,7 @@ if vim.g.neovide then
 	-- Start terminal and configure quit behavior
 	vim.cmd([[
 set termguicolors
-terminal tmux a
+terminal tmux a || tmux
 startinsert
 autocmd BufLeave term://* quit
 ]])

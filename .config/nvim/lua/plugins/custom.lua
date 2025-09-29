@@ -297,11 +297,11 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["javascript"] = { "biome" },
+        ["javascript"] = { "biome", "biome-organize-imports" },
         ["astro"] = { "biome" },
-        ["javascriptreact"] = { "biome" },
-        ["typescript"] = { "biome" },
-        ["typescriptreact"] = { "biome" },
+        ["javascriptreact"] = { "biome", "biome-organize-imports" },
+        ["typescript"] = { "biome", "biome-organize-imports" },
+        ["typescriptreact"] = { "biome", "biome-organize-imports" },
         ["vue"] = { "biome" },
         ["css"] = { "biome" },
         ["scss"] = { "biome" },
