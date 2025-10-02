@@ -1,5 +1,3 @@
-# DOTLY
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,6 +8,7 @@ fi
 # PLUGIN MANAGER
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 
+export NVM_LAZY_LOAD=true
 antidote load
 
 # POWERLEVEL10K
@@ -21,9 +20,9 @@ source "$DOTFILES_PATH/shell/init.sh"
 
 fpath=("$DOTFILES_PATH/shell/zsh/themes" "$DOTFILES_PATH/shell/zsh/completions" "$DOTLY_PATH/shell/zsh/themes" "$DOTLY_PATH/shell/zsh/completions" $fpath)
 
-source "$DOTLY_PATH/shell/zsh/bindings/dot.zsh"
-source "$DOTLY_PATH/shell/zsh/bindings/reverse_search.zsh"
-source "$DOTFILES_PATH/shell/zsh/key-bindings.zsh"
+# source "$DOTLY_PATH/shell/zsh/bindings/dot.zsh"
+# source "$DOTLY_PATH/shell/zsh/bindings/reverse_search.zsh"
+# source "$DOTFILES_PATH/shell/zsh/key-bindings.zsh"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -82,7 +81,27 @@ case ":$PATH:" in
 esac
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+nvm() {
+    unset -f nvm
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    nvm "$@"
+}
+node() {
+    unset -f node
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    node "$@"
+}
+npm() {
+    unset -f npm
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    npm "$@"
+}
+
+
 export ZK_NOTEBOOK_DIR="$HOME/second-brain"
+
+. "$HOME/.atuin/bin/env"
+zvm_after_init_commands+=(eval "$(atuin init zsh)")

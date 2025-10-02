@@ -34,8 +34,7 @@ if ! tmux has-session -t "$session_name" 2>/dev/null; then
     tmux new-session -d -s "$session_name" -c "$current_path" \
         -e "TERM=${TERM}" \
         -e "TERM_PROGRAM=${TERM_PROGRAM}" \
-        "$@"
-
+        zsh -i -c 'eval "$@" || read -k "?Command ││ failed. Press any key to close."' -- "$@"
     # Configure the new session to behave like a popup.
     tmux set-option -t "$session_name" status off
     tmux set-option -t "$session_name" key-table popup
