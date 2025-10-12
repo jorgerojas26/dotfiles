@@ -12,4 +12,5 @@ return {
     disable_inline_completion = false,
     ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
   },
+  enabled = false,
 }

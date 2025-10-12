@@ -330,12 +330,6 @@ return {
   --     require("dark_notify").run()
   --   end,
   -- },
-  -- {
-  --   "supermaven-inc/supermaven-nvim",
-  --   config = function()
-  --     require("supermaven-nvim").setup({})
-  --   end,
-  -- },
   {
     "saghen/blink.cmp",
     dependencies = "rafamadriz/friendly-snippets",
