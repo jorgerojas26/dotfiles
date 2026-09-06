@@ -1,5 +1,5 @@
 return {
-  "folke/sidekick.nvim",
+  "jorgerojas26/sidekick.nvim",
   opts = {
     copilot = {
       status = {
@@ -8,6 +8,12 @@ return {
     },
     nes = {
       enabled = true,
+    },
+    cli = {
+      mux = {
+        backend = "herdr",
+        enabled = true,
+      },
     },
   },
 }

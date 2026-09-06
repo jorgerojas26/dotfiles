@@ -1,0 +1,156 @@
+onboarding = false
+
+# Match the catppuccin scheme used in alacritty (mocha) and nvim (macchiato).
+[theme]
+name = "catppuccin"
+
+# Focused workspace/agent rows use surface_dim as their background. The
+# default (#1e1e2e) equals the terminal background, so focus was invisible.
+# Blue-grey tint makes the focused row clearly stand out.
+[theme.custom]
+surface_dim = "#3b4261"
+
+# Keybindings mirror ~/.tmux.conf (gpakosz + .local) where herdr has an
+# equivalent action. Prefix is ctrl+a (GNU Screen style, like tmux prefix2).
+[keys]
+prefix = "ctrl+a"
+
+# -- pane navigation -----------------------------------------------------------
+# tmux: prefix+hjkl (repeat) + direct ctrl+hjkl (smart-splits).
+# herdr has no vim-awareness, so direct ctrl+hjkl fires everywhere.
+focus_pane_left = ["prefix+h"]
+focus_pane_down = ["prefix+j"]
+focus_pane_up = ["prefix+k"]
+focus_pane_right = ["prefix+l"]
+
+# -- list navigation (navigate mode / spaces list) -------------------------------
+# prefix+s opens navigate mode over the workspace (spaces) list. Move the
+# selection with ctrl+n / ctrl+p (arrows still work too).
+# Note: the keybind help popup (prefix+?) uses hardcoded j/k + arrows (not
+# configurable); the goto navigator (prefix+g) already accepts ctrl+n/ctrl+p
+# while its search field is focused.
+navigate_workspace_down = ["ctrl+n", "down"]
+navigate_workspace_up = ["ctrl+p", "up"]
+
+# -- agents (herdr-native; tmux has no equivalent) --------------------------------
+# Agent panel rows, in panel order. prefix+alt+n/p cycle agents the way
+# prefix+n/p cycle tabs; focus_agent jumps straight to agent #N by its position
+# in the agent panel. ctrl+alt chords are the docs' recommended direct family
+# (free in every terminal, safe on macOS).
+previous_agent = ["prefix+alt+p", "ctrl+alt+p"]
+next_agent = ["prefix+alt+n", "ctrl+alt+n"]
+focus_agent = "prefix+alt+1..9"
+
+# -- splits --------------------------------------------------------------------
+# tmux: prefix+- = split below, prefix+_ = split right.
+# herdr: split_horizontal = stacked below (prefix+minus), split_vertical = side by side.
+split_horizontal = "prefix+minus"
+split_vertical = ["prefix+shift+minus", "prefix+v"]
+
+# -- last-tab / last-workspace (tmux last-window / last-session) -----------------
+# herdr has no native last-tab/last-workspace actions (only last_pane, which
+# conflates them). Last-workspace is implemented by the jorgerojas.last-workspace
+# plugin (~/.dotfiles/.config/herdr/plugins-local/last-workspace/): a hook on
+# workspace.focused keeps prev/current state files, and the prefix+space shell
+# command focuses the previous workspace. last_pane stays disabled because it
+# conflates tabs and workspaces.
+last_pane = ""
+cycle_pane_next = ""     # prefix+tab / prefix+shift+tab are the tmux last-* keys
+cycle_pane_previous = ""
+
+# -- tabs (tmux windows) --------------------------------------------------------
+new_tab = "prefix+c"                         # tmux prefix+c new-window
+previous_tab = ["prefix+p", "prefix+ctrl+h"] # tmux prefix+C-h previous-window
+next_tab = ["prefix+n", "prefix+ctrl+l"]     # tmux prefix+C-l next-window
+rename_tab = "prefix+shift+t"
+close_tab = "prefix+shift+x"
+switch_tab = "prefix+1..9"
+
+# -- workspaces (tmux sessions) -------------------------------------------------
+# prefix+s opens the searchable navigator (your tmux prefix+s sesh muscle
+# memory). The navigator opens in browse mode; press "/" to focus its search
+# field (auto-search-on-open is an open upstream request: herdrdev/herdr#1287).
+goto = ["prefix+g", "prefix+s"]
+workspace_picker = "prefix+w" # plain workspace list without search
+settings = "prefix+shift+s"
+new_workspace = [
+    "prefix+shift+n",
+    "prefix+ctrl+c",
+] # tmux prefix+C-c new-session
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+new_worktree = "" # disabled: prefix+shift+g runs the custom worktree+pi command below
+
+# -- config reload ---------------------------------------------------------------
+# tmux: prefix+r reloads config. herdr default had resize mode on prefix+r,
+# so resize mode moves to prefix+shift+r.
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+# -- copy mode -------------------------------------------------------------------
+copy_mode = ["prefix+[", "prefix+enter"] # tmux prefix+Enter enters copy mode
+
+# -- panes ------------------------------------------------------------------------
+close_pane = "prefix+x" # tmux prefix+x
+zoom = "prefix+z"       # tmux prefix+z maximize
+
+# -- tool toggles (tmux shpellshell) ----------------------------------------------
+# Same direct chords as tmux: C-\ lazysql, C-q mprocs, C-t opencode, C-g lazygit, C-i epiq.
+# Each toggles a named tab in the current workspace: press to open the tool tab
+# fullscreen (creating it on first use), press again to return to the tab you
+# were on. The tool keeps running in the background; if it was quit, toggling it
+# back on restarts it. See ~/.dotfiles/scripts/shell/herdr-toggle.go.
+# Rebuild after changes: go build -o herdr-toggle herdr-toggle.go
+[[keys.command]]
+key = "ctrl+\\"
+type = "shell"
+command = "~/.dotfiles/scripts/shell/herdr-toggle lazysql 'export PATH=\"$HOME/.go/bin:$PATH\" && lazysql'"
+description = "lazysql (toggle)"
+
+[[keys.command]]
+key = "ctrl+q"
+type = "shell"
+command = "~/.dotfiles/scripts/shell/herdr-toggle mprocs 'mprocs'"
+description = "run dev (toggle)"
+
+[[keys.command]]
+key = "ctrl+g"
+type = "shell"
+command = "~/.dotfiles/scripts/shell/herdr-toggle lazygit 'lazygit'"
+description = "lazygit (toggle)"
+
+[[keys.command]]
+key = "ctrl+i"
+type = "shell"
+command = "~/.dotfiles/scripts/shell/herdr-toggle beans 'beans tui'"
+description = "epiq (toggle)"
+
+[[keys.command]]
+key = "prefix+ctrl+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+
+# -- last-workspace (tmux last-session) ------------------------------------------
+# prefix+space focuses the previously focused workspace. State is maintained by
+# the jorgerojas.last-workspace plugin's workspace.focused hook; this shell
+# command just reads it and issues a workspace.focus request.
+[[keys.command]]
+key = "prefix+space"
+type = "shell"
+command = "~/.dotfiles/scripts/shell/herdr-last.py workspace"
+description = "last workspace"
+
+# -- auto worktree + pi (herdr-native, zero interaction) ---------------------------
+# prefix+shift+g (herdr's native new-worktree chord, disabled above): uses herdr
+# worktree create (same engine as the built-in flow) with an auto-generated
+# branch <rama-actual>-wt-<YYYYMMDD>[-N], then opens pi in the new workspace.
+# No prompts or confirmations. Impl: ~/.dotfiles/scripts/shell/herdr-worktree-pi.sh.
+[[keys.command]]
+key = "prefix+shift+g"
+type = "shell"
+command = "~/.dotfiles/scripts/shell/herdr-worktree-pi.sh"
+description = "auto worktree + pi"
+
+[ui]
+agent_panel_sort = "spaces"
+show_agent_labels_on_pane_borders = true

@@ -1,0 +1,11 @@
+theme = "catppuccin-macchiato"
+default_scope = "branch"
+navigator_position = "right"
+toggle_placement = "overlay"
+toggle_direction = "down"
+auto_open = false
+github_host = "github.example.com"
+
+[keybindings]
+comment = ["c", "ㅊ"]
+select = ["v", "ㅍ"]

@@ -48,6 +48,12 @@ map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint() <CR>", { desc 
 map("n", "<leader>gt", "<cmd> Telescope git_worktree git_worktrees <CR>", { desc = "List worktrees" })
 map("n", "<leader>gaw", "<cmd> Telescope git_worktree create_git_worktree <CR>", { desc = "Create worktree" })
 
+-- AI agent review comments (annotate + send via herdr)
+local review = require("agent-review")
+map({ "n", "v" }, "<leader>ra", review.add, { desc = "Add review comment (line)" })
+map("n", "<leader>rl", review.list, { desc = "List review comments" })
+map("n", "<leader>rs", review.send, { desc = "Send review comments to agent" })
+
 -- map("n", "<C-h>", "<cmd> TmuxNavigateLeft <CR>", { desc = "Tmux navigate left" })
 -- map("n", "<C-l>", "<cmd> TmuxNavigateRight <CR>", { desc = "Tmux navigate right" })
 -- map("n", "<C-k>", "<cmd> TmuxNavigateUp <CR>", { desc = "Tmux navigate up" })

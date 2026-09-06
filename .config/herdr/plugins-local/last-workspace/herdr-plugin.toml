@@ -1,0 +1,13 @@
+id = "jorgerojas.last-workspace"
+name = "last-workspace"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "Tracks the previously focused workspace so a shell keybinding can implement tmux last-session."
+platforms = ["macos", "linux"]
+
+# Herdr runs manifest hooks from the plugin root, one short-lived process per
+# event (same pattern as jhochenbaum.hunkdiff). The hook maintains two tiny
+# state files: current-workspace and prev-workspace.
+[[events]]
+on = "workspace.focused"
+command = ["python3", "hook.py"]

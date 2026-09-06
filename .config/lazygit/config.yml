@@ -348,10 +348,10 @@ git:
   skipHookPrefix: WIP
 
   # If true, periodically fetch from remote
-  autoFetch: true
+  autoFetch: false
 
   # If true, periodically refresh files and submodules
-  autoRefresh: true
+  autoRefresh: false
 
   # If not "none", lazygit will automatically fast-forward local branches to match
   # their upstream after fetching. Applies to branches that are not the currently

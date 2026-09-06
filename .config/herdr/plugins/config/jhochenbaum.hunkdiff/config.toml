@@ -1,0 +1,9 @@
+# herdr-hunk-diff plugin config (jhochenbaum.hunkdiff)
+# Review appears as an overlay panel over the current view (closest to a popup).
+[review]
+auto_open         = false
+reuse_pane        = true
+default_target    = "auto"   # branch diff when ahead of base, else working tree
+watch             = false
+placement         = "overlay"
+exclude_untracked = false

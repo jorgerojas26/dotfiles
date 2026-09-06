@@ -37,3 +37,9 @@ work
 davmail.log
 andino_proton_bridge_key.pem
 andino_proton_bridge_cert.pem
+.atl
+.config/Battle.net/Telemetry
+.config/configstore
+.config/manicode
+.config/rpiv-voice/errors.log
+.config/nodemon.json

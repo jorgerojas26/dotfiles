@@ -100,13 +100,20 @@ default < ctrl - b ; active
 active < ctrl - b ; default
 active < escape ; default
 
-alt - t : kitten quick-access-terminal --instance-group taskwarrior --config ~/.config/kitty/quick-access-terminal/taskwarrior.conf /bin/sh -c "taskwarrior-tui"
-alt - n : kitten quick-access-terminal --instance-group notes --config ~/.config/kitty/quick-access-terminal/notes.conf /bin/sh -c "export EDITOR=nvim; export ZK_NOTEBOOK_DIR=$HOME/second-brain; zk daily"
+# alt - t : kitten quick-access-terminal --instance-group taskwarrior --config ~/.config/kitty/quick-access-terminal/taskwarrior.conf /bin/sh -c "taskwarrior-tui"
+# alt - n : kitten quick-access-terminal --instance-group notes --config ~/.config/kitty/quick-access-terminal/notes.conf /bin/sh -c "export EDITOR=nvim; export ZK_NOTEBOOK_DIR=$HOME/second-brain; zk daily"
 # alt - o : kitten quick-access-terminal --instance-group ai-agent --config ~/.config/kitty/quick-access-terminal/opencode.conf /bin/sh -c "opencode"
-alt - d : kitten quick-access-terminal --instance-group wtfutil --config ~/.config/kitty/quick-access-terminal/mail.conf /bin/sh -c "set -a; source $HOME/projects/tu-coro-catolico/wtfutil/.env; set +a; wtfutil --config $HOME/projects/tu-coro-catolico/wtfutil/config.yml"
+# alt - d : kitten quick-access-terminal --instance-group wtfutil --config ~/.config/kitty/quick-access-terminal/mail.conf /bin/sh -c "set -a; source $HOME/projects/tu-coro-catolico/tools/wtfutil/.env; set +a; wtfutil --config $HOME/projects/tu-coro-catolico/tools/wtfutil/config.yml"
 
 # active < e : skhd -k "escape";\
 #              kitten quick-access-terminal --instance-group email --config ~/.config/kitty/quick-access-terminal/taskwarrior.conf /bin/sh -c "aerc --aerc-conf $HOME/.dotfiles/.config/aerc/aerc.conf --accounts-conf $HOME/.dotfiles/.config/aerc/accounts.conf --binds-conf $HOME/.dotfiles/.config/aerc/binds.conf"
 
 # active < c : skhd -k "escape";\
 #              kitten quick-access-terminal --instance-group calendar --config ~/.config/kitty/quick-access-terminal/taskwarrior.conf /bin/sh -c "calcurse -C /Users/jorgerojas/.config/calcurse -D /Users/jorgerojas/.config/calcurse"
+
+# ── Emacs Global Shortcuts (auto-starts daemon if not running) ──
+
+# alt - a : kitten quick-access-terminal --instance-group agenda --config ~/.config/kitty/quick-access-terminal/emacs-agenda.conf /bin/sh -c "/opt/homebrew/bin/emacsclient -e 't' >/dev/null 2>&1 || /opt/homebrew/bin/emacs --daemon >/dev/null 2>&1; exec /opt/homebrew/bin/emacsclient -nw --eval '(my/org-agenda-fullscreen)'"
+# alt - f : kitten quick-access-terminal --instance-group roam-find --config ~/.config/kitty/quick-access-terminal/emacs.conf /bin/sh -c "/opt/homebrew/bin/emacsclient -e 't' >/dev/null 2>&1 || /opt/homebrew/bin/emacs --daemon >/dev/null 2>&1; exec /opt/homebrew/bin/emacsclient -nw --eval '(org-roam-node-find)'"
+# alt - n : kitten quick-access-terminal --instance-group journal --config ~/.config/kitty/quick-access-terminal/emacs-journal.conf /bin/sh -c "/opt/homebrew/bin/emacsclient -e 't' >/dev/null 2>&1 || /opt/homebrew/bin/emacs --daemon >/dev/null 2>&1; exec /opt/homebrew/bin/emacsclient -nw --eval '(org-roam-dailies-goto-today)'"
+# alt - t : kitten quick-access-terminal --instance-group capture --config ~/.config/kitty/quick-access-terminal/emacs.conf /bin/sh -c "/opt/homebrew/bin/emacsclient -e 't' >/dev/null 2>&1 || /opt/homebrew/bin/emacs --daemon >/dev/null 2>&1; exec /opt/homebrew/bin/emacsclient -nw --eval '(org-capture nil \"t\")'"

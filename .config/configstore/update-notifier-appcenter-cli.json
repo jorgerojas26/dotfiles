@@ -1,8 +1,8 @@
 {
 	"optOut": false,
-	"lastUpdateCheck": 1722383690557,
+	"lastUpdateCheck": 1787783732095,
 	"update": {
-		"latest": "3.0.1",
+		"latest": "3.0.4",
 		"current": "2.14.0",
 		"type": "major",
 		"name": "appcenter-cli"

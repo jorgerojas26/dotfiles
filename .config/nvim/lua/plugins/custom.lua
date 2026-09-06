@@ -1,13 +1,13 @@
 return {
-  { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false } },
+  { "folke/tokyonight.nvim", lazy = true, opts = { style = "night", transparent = false }, enabled = false },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = { transparent_background = true, integrations = { blink_cmp = true } },
-    enabled = false,
+    enabled = true,
   },
   -- { "rose-pine/neovim" },
-  { "LazyVim/LazyVim", opts = { colorscheme = "tokyonight" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin-macchiato" } },
   -- {
   --   "hrsh7th/nvim-cmp",
   --   opts = function(_, opts)
@@ -154,7 +154,6 @@ return {
       },
     },
   },
-  { "sindrets/diffview.nvim" },
   {
     "mrjones2014/smart-splits.nvim",
     lazy = false,
@@ -168,5 +167,12 @@ return {
     config = function()
       require("ts-error-translator").setup()
     end,
+  },
+  {
+    "zeioth/garbage-day.nvim",
+    event = "VeryLazy",
+    opts = {
+      aggresive_mode = true,
+    },
   },
 }

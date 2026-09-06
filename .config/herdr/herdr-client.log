@@ -1,0 +1,67 @@
+2026-06-30T16:02:55.455979Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=48703
+2026-06-30T16:02:55.456061Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-06-30T16:02:55.706743Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-06-30T16:04:26.177235Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=51693
+2026-06-30T16:04:26.177609Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-06-30T16:04:26.416486Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-08-04T15:29:15.714016Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=18937
+2026-08-04T15:29:15.714136Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-04T15:29:15.956613Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-08-04T15:34:15.176298Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=18937
+2026-08-04T15:35:40.405159Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=29352
+2026-08-04T15:35:40.405425Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-04T15:35:40.406033Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-04T16:04:38.053906Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=29352
+2026-08-04T16:04:41.473026Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=58755
+2026-08-04T16:04:41.473079Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-04T16:04:41.688871Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-04T23:01:12.507470Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=70636
+2026-08-04T23:01:12.507777Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-04T23:01:12.545461Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-10T14:17:38.187887Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=56016
+2026-08-10T14:17:38.188353Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-10T14:17:38.243582Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-11T19:27:09.454922Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=56016
+2026-08-11T19:27:19.811649Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=68277
+2026-08-11T19:27:19.811695Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-11T19:27:19.814787Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-11T20:09:37.241923Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=18952
+2026-08-11T20:09:37.242091Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-11T20:09:37.262482Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-11T20:17:05.657740Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2280
+2026-08-11T20:17:05.657946Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-11T20:17:05.664490Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-11T20:39:17.456299Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=43711
+2026-08-11T20:39:17.456489Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-11T20:39:17.656740Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-20T04:53:47.698881Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=89705
+2026-08-20T04:53:47.698920Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-20T04:53:47.880305Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-22T20:59:04.299299Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=53697
+2026-08-22T20:59:04.299467Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-22T20:59:04.306815Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-24T20:36:08.698822Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=4902
+2026-08-24T20:36:08.699031Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-24T20:36:08.927948Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-30T23:52:39.678461Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=74021
+2026-08-30T23:52:39.678688Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-30T23:52:39.696351Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-31T15:17:16.574456Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=38983
+2026-08-31T15:17:16.575028Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-08-31T15:17:16.575523Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-09-02T06:33:48.842448Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=30738
+2026-09-02T06:33:48.842724Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-09-02T06:33:49.038697Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-09-02T06:54:52.761614Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=30738
+2026-09-02T06:59:11.176147Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=45867
+2026-09-02T06:59:11.176330Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-09-02T06:59:11.416391Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame
+2026-09-02T18:43:31.240714Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=45867
+2026-09-02T18:44:23.089586Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=94435
+2026-09-02T18:44:23.089771Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-09-02T18:44:23.266576Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame
+2026-09-02T19:02:59.603007Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=94435
+2026-09-02T19:03:03.557795Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=24610
+2026-09-02T19:03:03.557832Z  INFO herdr::client: connecting to server path=/Users/jorgerojas/.config/herdr/herdr-client.sock
+2026-09-02T19:03:03.666592Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame
+2026-09-05T21:51:10.083327Z  WARN herdr::sound: sound playback failed sound=Done err=player exited with exit status: 1: Error: AudioQueueStart failed (-66681)

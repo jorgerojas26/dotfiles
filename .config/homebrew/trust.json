@@ -1,0 +1,15 @@
+{
+  "trustedformulae": [
+    "gentleman-programming/tap/engram",
+    "gentleman-programming/tap/gentle-ai",
+    "gentleman-programming/tap/gga",
+    "mobile-dev-inc/tap/maestro",
+    "resend/cli/resend"
+  ],
+  "trustedtaps": [
+    "umputun/apps"
+  ],
+  "trustedcasks": [
+    "hmans/beans/beans"
+  ]
+}

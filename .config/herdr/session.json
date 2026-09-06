@@ -1,0 +1,1046 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w2F",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/projects/TILA/tila-app",
+      "public_pane_numbers": {
+        "1": 1
+      },
+      "next_public_pane_number": 26,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 1
+          },
+          "panes": {
+            "1": {
+              "cwd": "/Users/jorgerojas/projects/TILA/tila-app"
+            }
+          },
+          "zoomed": false,
+          "focused": 1,
+          "root_pane": 1
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w2H",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/projects/payment-verifier",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/payment-verifier/.git",
+        "label": "payment-verifier",
+        "repo_root": "/Users/jorgerojas/projects/payment-verifier",
+        "checkout_path": "/Users/jorgerojas/projects/payment-verifier",
+        "is_linked_worktree": false
+      },
+      "public_pane_numbers": {
+        "2": 13
+      },
+      "next_public_pane_number": 27,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 3,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 2
+          },
+          "panes": {
+            "2": {
+              "cwd": "/Users/jorgerojas/projects/payment-verifier"
+            }
+          },
+          "zoomed": false,
+          "focused": 2,
+          "root_pane": 2
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w2M",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/projects/dmmarket",
+      "public_pane_numbers": {
+        "3": 1
+      },
+      "next_public_pane_number": 4,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 3
+          },
+          "panes": {
+            "3": {
+              "cwd": "/Users/jorgerojas/projects/dmmarket"
+            }
+          },
+          "zoomed": false,
+          "focused": 3,
+          "root_pane": 3
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w2P",
+      "custom_name": "tu-coro-catolico",
+      "identity_cwd": "/Users/jorgerojas/projects/tu-coro-catolico",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/tu-coro-catolico/.git",
+        "label": "tu-coro-catolico",
+        "repo_root": "/Users/jorgerojas/projects/tu-coro-catolico",
+        "checkout_path": "/Users/jorgerojas/projects/tu-coro-catolico",
+        "is_linked_worktree": false
+      },
+      "public_pane_numbers": {
+        "78": 286,
+        "32": 249,
+        "4": 243,
+        "6": 220,
+        "8": 222,
+        "72": 282,
+        "81": 289
+      },
+      "next_public_pane_number": 297,
+      "public_tab_numbers": [
+        5,
+        11,
+        13,
+        18,
+        26,
+        27,
+        28
+      ],
+      "next_public_tab_number": 30,
+      "tabs": [
+        {
+          "custom_name": "agent",
+          "layout": {
+            "Pane": 4
+          },
+          "panes": {
+            "4": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-projects-tu-coro-catolico--/2026-09-03T09-45-24-149Z_01a066a8-a7b5-7c19-b818-c5828b65aae6.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 4,
+          "root_pane": 4
+        },
+        {
+          "custom_name": "lazygit",
+          "layout": {
+            "Pane": 6
+          },
+          "panes": {
+            "6": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico"
+            }
+          },
+          "zoomed": false,
+          "focused": 6,
+          "root_pane": 6
+        },
+        {
+          "custom_name": "mprocs",
+          "layout": {
+            "Pane": 8
+          },
+          "panes": {
+            "8": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico"
+            }
+          },
+          "zoomed": false,
+          "focused": 8,
+          "root_pane": 8
+        },
+        {
+          "custom_name": "lazysql",
+          "layout": {
+            "Pane": 32
+          },
+          "panes": {
+            "32": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico"
+            }
+          },
+          "zoomed": false,
+          "focused": 32,
+          "root_pane": 32
+        },
+        {
+          "custom_name": "beans",
+          "layout": {
+            "Pane": 72
+          },
+          "panes": {
+            "72": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico"
+            }
+          },
+          "zoomed": false,
+          "focused": 72,
+          "root_pane": 72
+        },
+        {
+          "custom_name": "Slow youtube link share",
+          "layout": {
+            "Pane": 78
+          },
+          "panes": {
+            "78": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-projects-tu-coro-catolico--/2026-09-03T20-32-40-040Z_01a068f9-3e68-7bbd-9798-861a145b7f5b.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 78,
+          "root_pane": 78
+        },
+        {
+          "custom_name": "freebuff",
+          "layout": {
+            "Pane": 81
+          },
+          "panes": {
+            "81": {
+              "cwd": "/Users/jorgerojas/projects/tu-coro-catolico"
+            }
+          },
+          "zoomed": false,
+          "focused": 81,
+          "root_pane": 81
+        }
+      ],
+      "active_tab": 3
+    },
+    {
+      "id": "w2R",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/projects/lazysql",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/lazysql/.git",
+        "label": "lazysql",
+        "repo_root": "/Users/jorgerojas/projects/lazysql",
+        "checkout_path": "/Users/jorgerojas/projects/lazysql",
+        "is_linked_worktree": false
+      },
+      "public_pane_numbers": {
+        "10": 10,
+        "11": 11,
+        "9": 1
+      },
+      "next_public_pane_number": 12,
+      "public_tab_numbers": [
+        1,
+        2,
+        3
+      ],
+      "next_public_tab_number": 4,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 9
+          },
+          "panes": {
+            "9": {
+              "cwd": "/Users/jorgerojas/projects/lazysql"
+            }
+          },
+          "zoomed": false,
+          "focused": 9,
+          "root_pane": 9
+        },
+        {
+          "custom_name": "lazygit",
+          "layout": {
+            "Pane": 10
+          },
+          "panes": {
+            "10": {
+              "cwd": "/Users/jorgerojas/projects/lazysql"
+            }
+          },
+          "zoomed": false,
+          "focused": 10,
+          "root_pane": 10
+        },
+        {
+          "custom_name": "lazysql",
+          "layout": {
+            "Pane": 11
+          },
+          "panes": {
+            "11": {
+              "cwd": "/Users/jorgerojas/projects/lazysql"
+            }
+          },
+          "zoomed": false,
+          "focused": 11,
+          "root_pane": 11
+        }
+      ],
+      "active_tab": 2
+    },
+    {
+      "id": "w2S",
+      "custom_name": "Nubli",
+      "identity_cwd": "/Users/jorgerojas/projects/TILA/baby-tila/baby-tila-app/main",
+      "public_pane_numbers": {
+        "12": 34
+      },
+      "next_public_pane_number": 47,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 12
+          },
+          "panes": {
+            "12": {
+              "cwd": "/Users/jorgerojas/projects/TILA/baby-tila/baby-tila-app/main"
+            }
+          },
+          "zoomed": false,
+          "focused": 12,
+          "root_pane": 12
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w2V",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/.dotfiles/.config/herdr",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/.dotfiles/.git",
+        "label": ".dotfiles",
+        "repo_root": "/Users/jorgerojas/.dotfiles",
+        "checkout_path": "/Users/jorgerojas/.dotfiles",
+        "is_linked_worktree": false
+      },
+      "public_pane_numbers": {
+        "13": 2,
+        "167": 26
+      },
+      "next_public_pane_number": 29,
+      "public_tab_numbers": [
+        2,
+        9
+      ],
+      "next_public_tab_number": 11,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 13
+          },
+          "panes": {
+            "13": {
+              "cwd": "/Users/jorgerojas/.dotfiles/.config/herdr",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-.dotfiles-.config-herdr--/2026-09-06T16-07-20-164Z_01a07779-6763-76b6-ae47-0e69c4759fa1.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 13,
+          "root_pane": 13
+        },
+        {
+          "custom_name": "lazygit",
+          "layout": {
+            "Pane": 167
+          },
+          "panes": {
+            "167": {
+              "cwd": "/Users/jorgerojas/.dotfiles/.config/herdr"
+            }
+          },
+          "zoomed": false,
+          "focused": 167,
+          "root_pane": 167
+        }
+      ],
+      "active_tab": 1
+    },
+    {
+      "id": "w2X",
+      "custom_name": "sql-editor-output-improvement",
+      "identity_cwd": "/Users/jorgerojas/.herdr/worktrees/lazysql/worktree-clear-valley-827a",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/lazysql/.git",
+        "label": "lazysql",
+        "repo_root": "/Users/jorgerojas/projects/lazysql",
+        "checkout_path": "/Users/jorgerojas/.herdr/worktrees/lazysql/worktree-clear-valley-827a",
+        "is_linked_worktree": true
+      },
+      "public_pane_numbers": {
+        "15": 1
+      },
+      "next_public_pane_number": 3,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 15
+          },
+          "panes": {
+            "15": {
+              "cwd": "/Users/jorgerojas/.herdr/worktrees/lazysql/worktree-clear-valley-827a"
+            }
+          },
+          "zoomed": false,
+          "focused": 15,
+          "root_pane": 15
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w2Z",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/projects/bonifacio",
+      "public_pane_numbers": {
+        "16": 9
+      },
+      "next_public_pane_number": 11,
+      "public_tab_numbers": [
+        2
+      ],
+      "next_public_tab_number": 3,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 16
+          },
+          "panes": {
+            "16": {
+              "cwd": "/Users/jorgerojas/projects/bonifacio",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-projects-bonifacio--/2026-08-29T18-37-29-309Z_01a04ecf-ff5d-76fb-a1a6-50b17905e624.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 16,
+          "root_pane": 16
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w20",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/.herdr/worktrees/payment-verifier/legacy-desktop/apps/desktop",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/payment-verifier/.git",
+        "label": "payment-verifier",
+        "repo_root": "/Users/jorgerojas/projects/payment-verifier",
+        "checkout_path": "/Users/jorgerojas/.herdr/worktrees/payment-verifier/legacy-desktop",
+        "is_linked_worktree": true
+      },
+      "public_pane_numbers": {
+        "17": 1
+      },
+      "next_public_pane_number": 2,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 17
+          },
+          "panes": {
+            "17": {
+              "cwd": "/Users/jorgerojas/.herdr/worktrees/payment-verifier/legacy-desktop/apps/desktop"
+            }
+          },
+          "zoomed": false,
+          "focused": 17,
+          "root_pane": 17
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w33",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/projects/wababot",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/wababot/.git",
+        "label": "wababot",
+        "repo_root": "/Users/jorgerojas/projects/wababot",
+        "checkout_path": "/Users/jorgerojas/projects/wababot",
+        "is_linked_worktree": false
+      },
+      "public_pane_numbers": {
+        "159": 49,
+        "144": 34,
+        "151": 41,
+        "165": 54,
+        "173": 60,
+        "170": 57,
+        "146": 36,
+        "145": 35,
+        "116": 8,
+        "111": 3,
+        "147": 37,
+        "171": 58,
+        "112": 4,
+        "150": 40,
+        "153": 43,
+        "164": 53,
+        "166": 55,
+        "155": 45,
+        "156": 46,
+        "158": 48,
+        "168": 56,
+        "149": 39,
+        "160": 50,
+        "113": 5,
+        "152": 42,
+        "154": 44,
+        "157": 47,
+        "162": 52
+      },
+      "next_public_pane_number": 61,
+      "public_tab_numbers": [
+        1,
+        2,
+        3,
+        4,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "next_public_tab_number": 54,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 113
+          },
+          "panes": {
+            "113": {
+              "cwd": "/Users/jorgerojas/projects/wababot",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-projects-wababot--/2026-09-06T16-01-56-958Z_01a07774-78dd-7005-aa67-894cddced323.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 113,
+          "root_pane": 113
+        },
+        {
+          "custom_name": "lazygit",
+          "layout": {
+            "Pane": 111
+          },
+          "panes": {
+            "111": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 111,
+          "root_pane": 111
+        },
+        {
+          "custom_name": "beans",
+          "layout": {
+            "Pane": 112
+          },
+          "panes": {
+            "112": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 112,
+          "root_pane": 112
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 116
+          },
+          "panes": {
+            "116": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 116,
+          "root_pane": 116
+        },
+        {
+          "custom_name": "you-are-the-sdd",
+          "layout": {
+            "Pane": 144
+          },
+          "panes": {
+            "144": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 144,
+          "root_pane": 144
+        },
+        {
+          "custom_name": "you-are-the-sdd",
+          "layout": {
+            "Pane": 145
+          },
+          "panes": {
+            "145": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 145,
+          "root_pane": 145
+        },
+        {
+          "custom_name": "you-are-the-sdd",
+          "layout": {
+            "Pane": 146
+          },
+          "panes": {
+            "146": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 146,
+          "root_pane": 146
+        },
+        {
+          "custom_name": "you-are-the-sdd",
+          "layout": {
+            "Pane": 147
+          },
+          "panes": {
+            "147": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 147,
+          "root_pane": 147
+        },
+        {
+          "custom_name": "sdd-explore rate-limit",
+          "layout": {
+            "Pane": 149
+          },
+          "panes": {
+            "149": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 149,
+          "root_pane": 149
+        },
+        {
+          "custom_name": "sdd-proposal rate-limit",
+          "layout": {
+            "Pane": 150
+          },
+          "panes": {
+            "150": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 150,
+          "root_pane": 150
+        },
+        {
+          "custom_name": "sdd-proposal rate-limit",
+          "layout": {
+            "Pane": 151
+          },
+          "panes": {
+            "151": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 151,
+          "root_pane": 151
+        },
+        {
+          "custom_name": "sdd-spec rate-limit",
+          "layout": {
+            "Pane": 152
+          },
+          "panes": {
+            "152": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 152,
+          "root_pane": 152
+        },
+        {
+          "custom_name": "sdd-design rate-limit",
+          "layout": {
+            "Pane": 153
+          },
+          "panes": {
+            "153": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 153,
+          "root_pane": 153
+        },
+        {
+          "custom_name": "sdd-tasks rate-limit",
+          "layout": {
+            "Pane": 154
+          },
+          "panes": {
+            "154": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 154,
+          "root_pane": 154
+        },
+        {
+          "custom_name": "sdd-tasks rate-limit",
+          "layout": {
+            "Pane": 155
+          },
+          "panes": {
+            "155": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 155,
+          "root_pane": 155
+        },
+        {
+          "custom_name": "WU1 schema rate-limit",
+          "layout": {
+            "Pane": 156
+          },
+          "panes": {
+            "156": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 156,
+          "root_pane": 156
+        },
+        {
+          "custom_name": "WU5 admin form rate-limit",
+          "layout": {
+            "Pane": 157
+          },
+          "panes": {
+            "157": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 157,
+          "root_pane": 157
+        },
+        {
+          "custom_name": "WU6 docs rate-limit",
+          "layout": {
+            "Pane": 158
+          },
+          "panes": {
+            "158": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 158,
+          "root_pane": 158
+        },
+        {
+          "custom_name": "WU6 docs rate-limit",
+          "layout": {
+            "Pane": 159
+          },
+          "panes": {
+            "159": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 159,
+          "root_pane": 159
+        },
+        {
+          "custom_name": "sdd-verify rate-limit",
+          "layout": {
+            "Pane": 160
+          },
+          "panes": {
+            "160": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 160,
+          "root_pane": 160
+        },
+        {
+          "custom_name": "sdd-explore: flujo de órdenes PWA",
+          "layout": {
+            "Pane": 162
+          },
+          "panes": {
+            "162": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 162,
+          "root_pane": 162
+        },
+        {
+          "custom_name": "sdd-proposal: PWA→WhatsApp handoff",
+          "layout": {
+            "Pane": 164
+          },
+          "panes": {
+            "164": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 164,
+          "root_pane": 164
+        },
+        {
+          "custom_name": "sdd-spec: deltas deeplink",
+          "layout": {
+            "Pane": 165
+          },
+          "panes": {
+            "165": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 165,
+          "root_pane": 165
+        },
+        {
+          "custom_name": "sdd-spec: deltas deeplink",
+          "layout": {
+            "Pane": 166
+          },
+          "panes": {
+            "166": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 166,
+          "root_pane": 166
+        },
+        {
+          "custom_name": "sdd-design: tecnicismo deeplink",
+          "layout": {
+            "Pane": 168
+          },
+          "panes": {
+            "168": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 168,
+          "root_pane": 168
+        },
+        {
+          "custom_name": "sdd-tasks: desglose implementación",
+          "layout": {
+            "Pane": 170
+          },
+          "panes": {
+            "170": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 170,
+          "root_pane": 170
+        },
+        {
+          "custom_name": "sdd-tasks: desglose implementación",
+          "layout": {
+            "Pane": 171
+          },
+          "panes": {
+            "171": {
+              "cwd": "/Users/jorgerojas/projects/wababot"
+            }
+          },
+          "zoomed": false,
+          "focused": 171,
+          "root_pane": 171
+        },
+        {
+          "custom_name": "sdd-apply: slices a+b",
+          "layout": {
+            "Pane": 173
+          },
+          "panes": {
+            "173": {
+              "cwd": "/Users/jorgerojas/projects/wababot",
+              "agent_name": "sdd-apply-pwa-orders",
+              "managed_agent_kind": "pi",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-projects-wababot--/2026-09-06T17-36-40-347Z_01a077cb-319a-7573-8e2d-4e6e052303b6.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 173,
+          "root_pane": 173
+        }
+      ],
+      "active_tab": 27
+    },
+    {
+      "id": "w3C",
+      "custom_name": null,
+      "identity_cwd": "/Users/jorgerojas/.herdr/worktrees/wababot/main-wt-20260906",
+      "worktree_space": {
+        "key": "/Users/jorgerojas/projects/wababot/.git",
+        "label": "wababot",
+        "repo_root": "/Users/jorgerojas/projects/wababot",
+        "checkout_path": "/Users/jorgerojas/.herdr/worktrees/wababot/main-wt-20260906",
+        "is_linked_worktree": true
+      },
+      "public_pane_numbers": {
+        "174": 1
+      },
+      "next_public_pane_number": 2,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 174
+          },
+          "panes": {
+            "174": {
+              "cwd": "/Users/jorgerojas/.herdr/worktrees/wababot/main-wt-20260906",
+              "agent_session": {
+                "source": "herdr:pi",
+                "agent": "pi",
+                "kind": "path",
+                "value": "/Users/jorgerojas/.pi/agent/sessions/--Users-jorgerojas-.herdr-worktrees-wababot-main-wt-20260906--/2026-09-06T17-46-29-166Z_01a077d4-2dae-759e-8e5f-c087db4a52a4.jsonl"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 174,
+          "root_pane": 174
+        }
+      ],
+      "active_tab": 0
+    }
+  ],
+  "active": 6,
+  "selected": 6,
+  "sidebar_width": 26,
+  "sidebar_section_split": 0.5106383,
+  "collapsed_space_keys": []
+}

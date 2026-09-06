@@ -1,0 +1,5 @@
+{
+  "provider": "parallel-mcp",
+  "searchModel": "opencode-go/deepseek-v4-flash",
+  "summaryModel": "opencode-go/deepseek-v4-flash"
+}

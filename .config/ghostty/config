@@ -5,6 +5,5 @@ quick-terminal-position = center
 quick-terminal-animation-duration = 0
 quick-terminal-screen = macos-menu-bar
 quick-terminal-autohide = false
-bell-features = system, no-audio
+bell-features = no-system, no-audio
 desktop-notifications = true
-audible-bell = true

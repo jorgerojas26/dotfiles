@@ -1,8 +1,12 @@
 {
-    "$schema": "https://opencode.ai/tui.json",
-    "keybinds": {
-        "app_exit": "ctrl+c",
-        "messages_page_down": "ctrl+d",
-        "messages_page_up": "ctrl+u"
-    }
+  "$schema": "https://opencode.ai/tui.json",
+  "keybinds": {
+    "app_exit": "ctrl+c",
+    "messages_page_down": "ctrl+d",
+    "messages_page_up": "ctrl+u"
+  },
+  "plugin": [
+    "opencode-sdd-engram-manage",
+    "opencode-subagent-statusline"
+  ]
 }
