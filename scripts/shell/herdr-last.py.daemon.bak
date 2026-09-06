@@ -1,0 +1,443 @@
+#!/usr/bin/env python3
+"""herdr-last.py — tmux-style "last tab" / "last workspace" for herdr.
+
+herdr has no native last-tab / last-workspace actions; its only recency jump
+(last_pane) conflates tabs and workspaces into a single previous-focus slot.
+This script mirrors tmux last-window / last-session exactly:
+
+    prefix+a / prefix+tab           -> last tab in the current workspace
+    prefix+space / prefix+shift+tab -> last workspace
+
+A tiny tracker (subcommand `daemon`) subscribes to workspace/tab focus events
+over herdr's newline-delimited JSON socket API. On subscribe the server
+replays its recent event history (last 512 events), so the tracker rebuilds
+its recency stacks from scratch on every start and keeps no disk state. The
+daemon is spawned on demand by the client subcommands and stays running.
+
+Herdr's api serves one request per connection and treats any client data on
+a subscription connection as "peer closed", so the tracker keeps two kinds of
+connections: a read-only subscription stream, and a fresh one-shot connection
+per focus request.
+
+Usage:
+    herdr-last.py daemon        run the focus-history tracker (background)
+    herdr-last.py tab           focus the last tab in the current workspace
+    herdr-last.py workspace     focus the last workspace
+
+Wire it up as herdr custom commands (type = "shell"), e.g.:
+    [[keys.command]]
+    key = "prefix+a"
+    type = "shell"
+    command = "~/.dotfiles/scripts/shell/herdr-last.py tab"
+    description = "last tab"
+"""
+
+import json
+import os
+import pathlib
+import select
+import signal
+import socket
+import subprocess
+import sys
+import time
+
+STATE_DIR = pathlib.Path(os.environ.get("HERDR_LAST_STATE_DIR", "~/.herdr")).expanduser()
+CTL_SOCKET = STATE_DIR / "herdr-last.sock"
+LOG_FILE = STATE_DIR / "herdr-last.log"
+
+_config_path = os.environ.get("HERDR_CONFIG_PATH", "")
+_config_dir = (
+    str(pathlib.Path(_config_path).expanduser().parent) if _config_path else "~/.config/herdr"
+)
+_socket_env = os.environ.get("HERDR_SOCKET_PATH", "")
+HERDR_SOCKET = (
+    pathlib.Path(_socket_env).expanduser()
+    if _socket_env
+    else pathlib.Path(_config_dir).expanduser() / "herdr.sock"
+)
+
+MAX_STACK = 16
+IO_TIMEOUT = 5.0
+DRAIN_WINDOW = 1.5   # max seconds spent absorbing the subscribe replay
+DRAIN_GAP = 0.25     # a quiet gap longer than this means the replay is done
+SUBSCRIBE = {
+    "id": "hl0",
+    "method": "events.subscribe",
+    "params": {
+        "subscriptions": [
+            {"type": "workspace.focused"},
+            {"type": "tab.focused"},
+            {"type": "workspace.closed"},
+            {"type": "tab.closed"},
+        ]
+    },
+}
+
+
+def log(message):
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    with open(LOG_FILE, "a") as f:
+        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {message}\n")
+
+
+def push(stack, item):
+    if item in stack:
+        stack.remove(item)
+    stack.insert(0, item)
+    del stack[MAX_STACK:]
+
+
+def one_shot_request(method, params, timeout=IO_TIMEOUT):
+    """Send one request on a fresh connection (herdr serves one request per
+    connection) and return the response object, or None on any failure."""
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        s.connect(str(HERDR_SOCKET))
+        s.sendall(
+            (json.dumps({"id": "hlr", "method": method, "params": params}) + "\n").encode()
+        )
+        buf = b""
+        while b"\n" not in buf:
+            chunk = s.recv(65536)
+            if not chunk:
+                break
+            buf += chunk
+        s.close()
+        line = buf.split(b"\n", 1)[0].decode("utf-8", "replace").strip()
+        obj = json.loads(line)
+        return obj if obj.get("id") == "hlr" else None
+    except (OSError, EOFError, json.JSONDecodeError):
+        return None
+
+
+class Tracker:
+    """Subscribes to herdr focus events and answers last-tab/last-workspace
+    queries from the control socket."""
+
+    def __init__(self):
+        self.ws_stack = []            # workspace ids, most recently focused first
+        self.tabs = {}                # workspace id -> [tab ids, most recent first]
+        self.current_ws = None
+        self.current_tab = None
+        self.herdr = None             # subscription connection (read-only)
+        self.buf = ""
+        self.ctl = None               # control server socket
+        self.clients = []
+        self.running = True
+        self.warming = False          # True while draining the initial replay
+        self.warm_deadline = 0.0
+        self.last_event_at = 0.0
+
+    # ---- herdr subscription stream ----------------------------------------------
+
+    def connect_herdr(self):
+        """Open the read-only subscription stream and wait for the ack.
+
+        The replay that follows the ack rebuilds the recency stacks; it is
+        absorbed non-blockingly by the main loop while self.warming is True,
+        so control requests are served during warmup instead of stalling."""
+        if self.herdr is not None:
+            try:
+                self.herdr.close()
+            except OSError:
+                pass
+            self.herdr = None
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.connect(str(HERDR_SOCKET))
+        s.sendall((json.dumps(SUBSCRIBE) + "\n").encode())
+        self.buf = ""
+        self.herdr = s
+        line = self._read_line(IO_TIMEOUT)
+        if line is None:
+            raise OSError("no subscribe ack from herdr")
+        obj = json.loads(line)
+        if obj.get("id") != "hl0":
+            raise OSError(f"unexpected subscribe response: {line[:200]}")
+        self.warming = True
+        self.warm_deadline = time.time() + DRAIN_WINDOW
+        self.last_event_at = time.time()
+        log("connected to herdr (warming)")
+
+    def finish_warming(self):
+        """Replay drained: seed the current focus from a snapshot only when the
+        replay produced no history at all."""
+        self.warming = False
+        if not self.ws_stack:
+            resp = one_shot_request("session.snapshot", {})
+            snap = (resp or {}).get("result", {}).get("snapshot", {})
+            self.current_ws = snap.get("focused_workspace_id")
+            self.current_tab = snap.get("focused_tab_id")
+        log("history warmed")
+
+    def _read_line(self, timeout):
+        """Read one complete JSON line from the subscription stream.
+        Returns None on timeout, raises EOFError on disconnect."""
+        while "\n" not in self.buf:
+            self.herdr.settimeout(timeout)
+            try:
+                chunk = self.herdr.recv(65536)
+            except socket.timeout:
+                return None
+            if not chunk:
+                raise EOFError("herdr socket closed")
+            self.buf += chunk.decode("utf-8", "replace")
+        line, self.buf = self.buf.split("\n", 1)
+        return line.strip()
+
+    def handle_event(self, obj):
+        event = obj.get("event")
+        data = obj.get("data", {})
+        if event == "workspace_focused":
+            self.current_ws = data.get("workspace_id")
+            push(self.ws_stack, self.current_ws)
+        elif event == "tab_focused":
+            self.current_ws = data.get("workspace_id")
+            self.current_tab = data.get("tab_id")
+            push(self.tabs.setdefault(self.current_ws, []), self.current_tab)
+        elif event == "workspace_closed":
+            ws_id = data.get("workspace_id")
+            if ws_id in self.ws_stack:
+                self.ws_stack.remove(ws_id)
+            self.tabs.pop(ws_id, None)
+            if self.current_ws == ws_id:
+                self.current_ws = None
+                self.current_tab = None
+        elif event == "tab_closed":
+            ws_id = data.get("workspace_id")
+            tab_id = data.get("tab_id")
+            stack = self.tabs.get(ws_id)
+            if stack and tab_id in stack:
+                stack.remove(tab_id)
+            if self.current_tab == tab_id:
+                self.current_tab = None
+
+    # ---- actions --------------------------------------------------------------
+
+    def last_tab(self):
+        """Focus the last tab in the current workspace (tmux last-window)."""
+        ws = self.current_ws
+        if not ws:
+            return False
+        for tab_id in self.tabs.get(ws, [])[1:]:
+            if tab_id == self.current_tab:
+                continue
+            resp = one_shot_request("tab.focus", {"tab_id": tab_id})
+            if resp and resp.get("result"):
+                return True
+            self.scrub_tab(tab_id)  # stale: tab was closed
+        return False
+
+    def last_workspace(self):
+        """Focus the last workspace (tmux last-session)."""
+        for ws_id in self.ws_stack[1:]:
+            resp = one_shot_request("workspace.focus", {"workspace_id": ws_id})
+            if resp and resp.get("result"):
+                return True
+            self.scrub_ws(ws_id)  # stale: workspace was closed
+        return False
+
+    def scrub_tab(self, tab_id):
+        ws_id = tab_id.split(":", 1)[0]
+        stack = self.tabs.get(ws_id)
+        if stack and tab_id in stack:
+            stack.remove(tab_id)
+
+    def scrub_ws(self, ws_id):
+        if ws_id in self.ws_stack:
+            self.ws_stack.remove(ws_id)
+        self.tabs.pop(ws_id, None)
+
+    # ---- control socket --------------------------------------------------------------------------------------------
+
+    def _drop_client(self, client):
+        if client in self.clients:
+            self.clients.remove(client)
+        try:
+            client.close()
+        except OSError:
+            pass
+
+    def serve_control(self, client):
+        data = client.recv(4096)
+        if not data:
+            self._drop_client(client)
+            return
+        try:
+            cmd = json.loads(data.decode("utf-8", "replace")).get("cmd")
+        except json.JSONDecodeError:
+            cmd = None
+        if self.herdr is None:
+            reply = {"ok": False, "reason": "no-herdr"}
+        elif cmd == "tab":
+            reply = {"ok": self.last_tab(), "reason": "no-history"}
+        elif cmd == "workspace":
+            reply = {"ok": self.last_workspace(), "reason": "no-history"}
+        else:
+            reply = {"ok": False, "reason": "bad-command"}
+        client.sendall((json.dumps(reply) + "\n").encode())
+        self._drop_client(client)
+
+    # ---- main loop ---------------------------------------------------------------
+
+    def run(self):
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        try:
+            self.ctl = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            try:
+                self.ctl.bind(str(CTL_SOCKET))
+            except OSError:
+                return  # another tracker already owns the control socket
+            self.ctl.listen(8)
+        except OSError as err:
+            log(f"control socket failed: {err}")
+            return
+        log("tracker started")
+
+        def shutdown(_sig, _frame):
+            self.running = False
+
+        signal.signal(signal.SIGTERM, shutdown)
+        signal.signal(signal.SIGINT, shutdown)
+
+        while self.running:
+            if self.herdr is None:
+                try:
+                    self.connect_herdr()
+                except (OSError, EOFError, json.JSONDecodeError) as err:
+                    log(f"connect failed: {err}")
+                    self.herdr = None
+                    time.sleep(0.5)
+                    continue
+            socks = [self.ctl, self.herdr] + self.clients
+            try:
+                readable, _, _ = select.select(socks, [], [], 0.05 if self.clients else 0.2)
+            except OSError:
+                readable = []
+            for s in readable:
+                if s is self.ctl:
+                    client, _ = self.ctl.accept()
+                    self.clients.append(client)
+                elif s is self.herdr:
+                    try:
+                        self.herdr.settimeout(0.2)
+                        chunk = self.herdr.recv(65536)
+                        if not chunk:
+                            raise EOFError("herdr socket closed")
+                        self.buf += chunk.decode("utf-8", "replace")
+                        while "\n" in self.buf:
+                            line, self.buf = self.buf.split("\n", 1)
+                            line = line.strip()
+                            if line:
+                                try:
+                                    self.handle_event(json.loads(line))
+                                except json.JSONDecodeError:
+                                    pass
+                                    if self.warming:
+                                        self.last_event_at = time.time()
+                    except socket.timeout:
+                        pass  # select said readable but no complete frame yet
+                    except (OSError, EOFError):
+                        log("herdr connection lost, reconnecting...")
+                        try:
+                            self.herdr.close()
+                        except OSError:
+                            pass
+                        self.herdr = None
+                elif s in self.clients:
+                    try:
+                        self.serve_control(s)
+                    except Exception as err:  # never let one bad client kill the daemon
+                        log(f"control error: {err!r}")
+                        self._drop_client(s)
+            # Replay arrives in ~100ms ticks; a quiet gap (or the hard
+            # deadline) means the backlog is exhausted.
+            if self.warming:
+                now = time.time()
+                if now > self.warm_deadline or now - self.last_event_at > DRAIN_GAP:
+                    self.finish_warming()
+
+        if self.herdr is not None:
+            try:
+                self.herdr.close()
+            except OSError:
+                pass
+        if self.ctl is not None:
+            try:
+                self.ctl.close()
+            except OSError:
+                pass
+        try:
+            CTL_SOCKET.unlink()
+        except OSError:
+            pass
+        log("tracker stopped")
+
+
+# ---- client ----------------------------------------------------------------
+
+def ensure_daemon():
+    """Spawn the tracker if the control socket is not answering."""
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(0.25)
+        s.connect(str(CTL_SOCKET))
+        s.close()
+        return
+    except OSError:
+        pass
+    try:
+        CTL_SOCKET.unlink()
+    except OSError:
+        pass
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    with open(LOG_FILE, "a") as logf:
+        subprocess.Popen(
+            [sys.executable, str(pathlib.Path(__file__).resolve()), "daemon"],
+            start_new_session=True,
+            stdin=subprocess.DEVNULL,
+            stdout=logf,
+            stderr=logf,
+        )
+
+
+def client(cmd):
+    deadline = time.time() + 6.0
+    retried = False
+    while time.time() < deadline:
+        ensure_daemon()
+        try:
+            s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            s.settimeout(4.0)
+            s.connect(str(CTL_SOCKET))
+            s.sendall((json.dumps({"cmd": cmd}) + "\n").encode())
+            data = s.recv(4096)
+            s.close()
+            reply = json.loads(data.decode("utf-8", "replace"))
+            if reply.get("ok"):
+                return 0
+            if reply.get("reason") == "no-history" and not retried:
+                # the tracker may still be draining the focus-history replay
+                # after a cold start; give it a moment and try once more
+                retried = True
+                time.sleep(0.25)
+                continue
+            return 1
+        except OSError:
+            time.sleep(0.1)
+    return 1
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(__doc__, file=sys.stderr)
+        sys.exit(2)
+    sub = sys.argv[1]
+    if sub == "daemon":
+        Tracker().run()
+    elif sub in ("tab", "workspace"):
+        sys.exit(client(sub))
+    else:
+        print(__doc__, file=sys.stderr)
+        sys.exit(2)

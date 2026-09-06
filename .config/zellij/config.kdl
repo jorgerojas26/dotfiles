@@ -11,7 +11,7 @@ keybinds clear-defaults=true {
         bind "Ctrl k" { MoveFocus "Up";  }
         bind "Ctrl L" { Clear; }
         bind "CTRL \\" {
-            Run "zellij" "run" "--floating" "--close-on-exit" "--width=95%" "--height=95%" "-x=2%" "-y=2%" "--name=lazysql" "--" "lazysql" {
+            Run "zellij" "new-pane" "--floating" "--close-on-exit" "--borderless" "--width=95%" "--height=95%" "-x=2%" "-y=2%" "--name=lazysql" "--" "lazysql" {
                 close_on_exit true
             }
             SwitchToMode "normal"

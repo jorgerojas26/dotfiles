@@ -11,6 +11,9 @@ source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 export NVM_LAZY_LOAD=true
 antidote load
 
+# ZOXIDE
+eval "$(zoxide init zsh)"
+
 # POWERLEVEL10K
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -43,6 +46,10 @@ export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 export PATH=$PATH:/flutter/bin
 export PATH=$PATH:/opt/homebrew/bin
 export PATH="/Users/jorgerojas/.local/bin:$PATH"
+# bun (restaurado: se perdió en el sync b3aac6e)
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export LC_ALL=en_US.UTF-8
@@ -68,9 +75,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 # zstyle ':fzf-tab:*' fzf-command fzf-tmux
 zstyle ':fzf-tab:complete:*:*' popup-pad 100 100
-
-# AUTO NOTIFY
-AUTO_NOTIFY_IGNORE+=("docker" "man" "sleep", "lg", "tmux", "nvim", "nvim .", "vim", "vi", "git", "ssh", "lazygit", "tmux a")
 
 
 # PNPM
@@ -105,3 +109,34 @@ export ZK_NOTEBOOK_DIR="$HOME/second-brain"
 
 . "$HOME/.atuin/bin/env"
 zvm_after_init_commands+=(eval "$(atuin init zsh)")
+
+# opencode
+export PATH=/Users/jorgerojas/.opencode/bin:$PATH
+export OPENCODE_CONFIG_DIR=/Users/jorgerojas/.config/opencode
+
+export BW_SESSION="FlV8K2HE5TklyfP2eQppXj5mdkOyDr0+GRPeyzhnabLjh51cOn9uiHsXZEk6ZKERv+cA2c+kKgLTioAH4K40hQ=="
+
+# Notification logic for long-running commands
+autoload -Uz add-zsh-hook
+
+function notify-start() {
+  # Store the start time
+  timer=${timer:-$SECONDS}
+}
+
+function notify-end() {
+  if [ $timer ]; then
+    timer_show=$(( $SECONDS - $timer ))
+    # Only notify if the command took more than 10 seconds
+    if [ $timer_show -ge 10 ]; then
+      # Print the ASCII Bell character
+      print -n "\a"
+      # Optional: Use a desktop notification if you want text (works on macOS/Linux)
+      # set -q GHOSTTY_BIN_DIR && echo "Command finished after ${timer_show}s"
+    fi
+    unset timer
+  fi
+}
+
+add-zsh-hook preexec notify-start
+add-zsh-hook precmd notify-end

@@ -7,7 +7,7 @@ return {
   },
   opts = {
     keymaps = {
-      accept_suggestion = nil, -- handled by nvim-cmp / blink.cmp
+      accept_suggestion = "C-e", -- handled by nvim-cmp / blink.cmp
     },
     disable_inline_completion = false,
     ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },

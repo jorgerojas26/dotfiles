@@ -1,17 +1,42 @@
-local M = {
-  "MeanderingProgrammer/markdown.nvim",
-  opts = {
-    file_types = { "markdown", "norg", "rmd" },
-    code = {
-      sign = false,
-      width = "block",
-      right_pad = 1,
-    },
-    heading = {
-      sign = false,
-      icons = {},
-    },
-  },
-}
-
-return M
+return {}
+-- return {
+--   {
+--     "stevearc/conform.nvim",
+--     optional = true,
+--     opts = {
+--       formatters = {
+--         ["markdown-toc"] = {
+--           condition = function(_, ctx)
+--             for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
+--               if line:find("<!%-%- toc %-%->") then
+--                 return true
+--               end
+--             end
+--           end,
+--         },
+--         ["markdownlint-cli2"] = {
+--           condition = function()
+--             return false
+--           end,
+--         },
+--       },
+--       formatters_by_ft = {
+--         ["markdown"] = { "prettier" },
+--         ["markdown.mdx"] = { "prettier" },
+--       },
+--     },
+--   },
+--   {
+--     "mason-org/mason.nvim",
+--     opts = { ensure_installed = { "markdown-toc" } },
+--   },
+--   {
+--     "mfussenegger/nvim-lint",
+--     optional = true,
+--     opts = {
+--       linters_by_ft = {
+--         markdown = {},
+--       },
+--     },
+--   },
+-- }

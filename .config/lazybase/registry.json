@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "projects": {
+    "06141cc60662f1b6": {
+      "id": "06141cc60662f1b6",
+      "path": "/Users/jorgerojas/projects/tu-coro-catolico/tu-coro-catolico/lib/server",
+      "slot": 0,
+      "last_used_unix_sec": 1781633067
+    },
+    "41ecd17fe2d15203": {
+      "id": "41ecd17fe2d15203",
+      "path": "/Users/jorgerojas/projects/capsulas-de-fe",
+      "slot": 3,
+      "last_used_unix_sec": 1781883584
+    },
+    "514d90975c7d2856": {
+      "id": "514d90975c7d2856",
+      "path": "/Users/jorgerojas/projects/quiniela-kron",
+      "slot": 2,
+      "last_used_unix_sec": 1782707945
+    },
+    "e622f2009787f938": {
+      "id": "e622f2009787f938",
+      "path": "/Users/jorgerojas/projects/promeridu/promeridu_front-main/src/lib/server",
+      "slot": 1,
+      "last_used_unix_sec": 1782155351
+    }
+  }
+}

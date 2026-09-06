@@ -17,19 +17,11 @@ end
 
 -- CodeCompanion
 -- map("n", "<leader>ia", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "CodeCompanion" })
-map("n", "<leader>ia", "<cmd>AvanteToggle<CR>", { desc = "IA Chat" })
+-- map("n", "<leader>ia", "<cmd>AvanteToggle<CR>", { desc = "IA Chat" })
 
 map("n", "<leader>fs", "<cmd> update <CR>", { desc = "Save file" })
 map("n", "<leader>fq", "<cmd> q <CR>", { desc = "Quit buffer" })
 map("n", "<leader>l", "<cmd> b# <CR>", { desc = "Go to last buffer" })
-
-map("n", "<leader>fl", "<cmd> FzfLua resume <CR>", { desc = "Telescope resume" })
--- map("n", "<leader>gb", "<cmd> Telescope git_branches <CR>", { desc = "Telescope branches" })
-
--- map("n", "<leader>pl", "<cmd> Telescope project theme=dropdown <CR>", { desc = "Telescope project" })
-
--- map("n", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
--- map("i", "<c-p>", "<cmd> Telescope neoclip theme=dropdown <CR>", { desc = "Neoclip" })
 
 map("n", "<leader>gs", function()
   -- Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
@@ -40,18 +32,12 @@ map("n", "<C-t>", function()
   Snacks.terminal.open({ "lazysql" })
 end, { desc = "Lazysql" })
 
--- map("n", "<leader>gs", "<cmd> Neogit kind=vsplit <CR>", { desc = "Git status" })
--- map("n", "<leader>gs", "<cmd> vertical rightbelow G <CR>", { desc = "Git status" })
-map("n", "<leader>gf", "<cmd> diffget //2 <CR>", { desc = "Keep left" })
-map("n", "<leader>gl", "<cmd> diffget //3 <CR>", { desc = "Keep right" })
-map("n", "<leader>g-", "<cmd> G switch - <CR>", { desc = "Switch to last git branch" })
-
 -- HARPOON
-map("n", "<leader>h", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", { desc = "Harpoon quick menu" })
-map("n", "<leader>ah", "<cmd>lua require'harpoon.mark'.add_file()<CR>", { desc = "Harpoon add file" })
-map("n", "<leader>[", "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", { desc = "Harpoon nav file 1" })
-map("n", "<leader>]", "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", { desc = "Harpoon nav file 2" })
-map("n", "<leader>\\", "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", { desc = "Harpoon nav file 3" })
+-- map("n", "<leader>h", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", { desc = "Harpoon quick menu" })
+-- map("n", "<leader>ah", "<cmd>lua require'harpoon.mark'.add_file()<CR>", { desc = "Harpoon add file" })
+-- map("n", "<leader>[", "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", { desc = "Harpoon nav file 1" })
+-- map("n", "<leader>]", "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", { desc = "Harpoon nav file 2" })
+-- map("n", "<leader>\\", "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", { desc = "Harpoon nav file 3" })
 
 map("n", "<leader>xc", ":g/console.lo/d<cr>", { desc = "Remove console.log of current file" })
 
@@ -104,11 +90,6 @@ end
 vim.cmd("autocmd! TermOpen term://* lua toggle_current_term()")
 
 -- map("n", "<C-s>", require("auto-session.session-lens").search_session, { noremap = true })
-
-map("n", "<C-s>", "<cmd> Telescope projections <CR>")
-
-map("n", "<c-->", "<cmd> Terminal <CR>", { desc = "Terminal (Root Dir)" })
-map("t", "<c-->", "<cmd>bw! <CR>", { desc = "Remove terminal" })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesActionRename",

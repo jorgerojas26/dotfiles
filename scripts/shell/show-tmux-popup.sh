@@ -23,18 +23,20 @@ current_path=$(tmux display-message -p '#{pane_current_path}')
 if [ -n "$global_session_name" ]; then
     session_name="$global_session_name"
 else
-    session_name="_popup_$(tmux display -p '#S')_$1"
+    session_name="_popup_$(tmux display -p '#S_#I')_$1"
 fi
 
 # Check if a session with this name already exists.
 if ! tmux has-session -t "$session_name" 2>/dev/null; then
     # If it doesn't exist, create a new detached session.
-    # The script's own environment now has the correct TERM and TERM_PROGRAM
-    # passed from the tmux.conf binding. We forward them to the new session.
+    # Optimized: use non-interactive shell for faster startup
     tmux new-session -d -s "$session_name" -c "$current_path" \
         -e "TERM=${TERM}" \
         -e "TERM_PROGRAM=${TERM_PROGRAM}" \
-        zsh -i -c 'eval "$@" || read -k "?Command ││ failed. Press any key to close."' -- "$@"
+        -e "EDITOR=${EDITOR:-nvim}" \
+        -e "VISUAL=${VISUAL:-nvim}" \
+        zsh -i -c 'source ~/.zshenv; "$@" || read -k "?Command failed. Press any key to close."' -- "$@"
+    
     # Configure the new session to behave like a popup.
     tmux set-option -t "$session_name" status off
     tmux set-option -t "$session_name" key-table popup

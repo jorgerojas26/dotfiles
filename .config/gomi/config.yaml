@@ -1,5 +1,5 @@
 core:
-  trash_dir: /Users/jorgerojas/.gomi
+  gomi_dir: /Users/jorgerojas/.gomi
   restore:
     verbose: true
     confirm: true
@@ -8,25 +8,25 @@ ui:
   style:
     list_view:
       indent_on_select: true
-      cursor: '#AD58B4'
-      selected: '#5FB458'
+      cursor: "#AD58B4"
+      selected: "#5FB458"
     detail_view:
-      border: '#EEEEDD'
+      border: "#EEEEDD"
       info_pane:
         deleted_from:
-          fg: '#EEEEEE'
-          bg: '#1C1C1C'
+          fg: "#EEEEEE"
+          bg: "#1C1C1C"
         deleted_at:
-          fg: '#EEEEEE'
-          bg: '#1C1C1C'
+          fg: "#EEEEEE"
+          bg: "#1C1C1C"
       preview_pane:
-        border: '#3C3C3C'
+        border: "#3C3C3C"
         size:
-          fg: '#EEEEDD'
-          bg: '#3C3C3C'
+          fg: "#EEEEDD"
+          bg: "#3C3C3C"
         scroll:
-          fg: '#EEEEDD'
-          bg: '#3C3C3C'
+          fg: "#EEEEDD"
+          bg: "#3C3C3C"
   exit_message: bye!
   preview:
     syntax_highlight: true
@@ -38,7 +38,7 @@ history:
     within_days: 365
   exclude:
     files:
-    - .DS_Store
+      - .DS_Store
     patterns: []
     globs: []
     size:

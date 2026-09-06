@@ -28,3 +28,12 @@ emacs-packages/org-agenda-dashboard
 .config/nv
 .config/emacs
 .config/emacs
+
+# Pix Agent
+.pi/
+.pi-lens/
+.config/calcurse
+work
+davmail.log
+andino_proton_bridge_key.pem
+andino_proton_bridge_cert.pem

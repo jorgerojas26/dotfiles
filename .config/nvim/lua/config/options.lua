@@ -15,6 +15,7 @@ vim.cmd([[let g:tmux_navigator_preserve_zoom = 1 ]])
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
+vim.g.ai_cmp = false -- This disables copilot suggestions in blink.cmp
 -- vim.cmd('imap <silent><script><expr> <C-e> copilot#Accept("")')
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 vim.opt.list = false
@@ -45,3 +46,13 @@ vim.g.snacks_animate = false
 
 vim.g.codecompanion_auto_tool_mode = true
 vim.g.lazyvim_prettier_needs_config = true
+
+vim.lsp.set_log_level("off")
+vim.cmd.syntax("off")
+
+-- Disable spell checking
+vim.opt.spell = false
+vim.opt.spelllang = {}
+
+-- Disable folding
+vim.opt.foldenable = false

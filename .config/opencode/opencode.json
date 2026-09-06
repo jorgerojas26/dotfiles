@@ -1,11 +1,64 @@
 {
     "$schema": "https://opencode.ai/config.json",
-    "permission": {
-        "edit": "ask",
-        "bash": "ask"
+    "agent": {
+        "build": {
+            "description": "Agent that builds simple things fast",
+            "disable": false,
+            "mode": "primary",
+            "model": "opencode-go/deepseek-v4-flash",
+            "permission": {
+                "edit": "allow",
+                "git *": "allow"
+            },
+            "tools": {
+                "bash": true,
+                "edit": true,
+                "read": true,
+                "write": true
+            }
+        },
+        "plan": {
+            "disable": true,
+            "mode": "primary",
+            "model": "opencode-go/glm-5.1",
+            "options": {
+                "thinking": {
+                    "type": "enabled"
+                }
+            },
+            "permission": {
+                "edit": "deny"
+            },
+            "tools": {
+                "bash": true
+            }
+        }
     },
-    "keybinds": {
-        "messages_page_up": "ctrl+u",
-        "messages_page_down": "ctrl+d",
-    }
+    "formatter": {
+        "prettier": {
+            "disabled": true
+        }
+    },
+    "mcp": {
+        "pencil": {
+            "command": [
+                "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64",
+                "--app",
+                "desktop"
+            ],
+            "enabled": false,
+            "type": "local"
+        },
+        "engram": {
+            "type": "local",
+            "command": [
+                "/opt/homebrew/Cellar/engram/1.15.9/bin/engram",
+                "mcp",
+                "--tools=agent"
+            ],
+            "enabled": false
+        }
+    },
+    "plugin": ["@mohak34/opencode-notifier@latest"],
+    "small_model": "opencode-go/deepseek-v4-flash"
 }

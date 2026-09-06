@@ -2,7 +2,7 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Open Agenda
+# @raycast.title Open neovide
 # @raycast.mode silent
 
 # Optional parameters:

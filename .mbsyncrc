@@ -6,15 +6,14 @@ Port 993
 User jorgeluisrojasb@gmail.com
 PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorgeluisrojasb@gmail.com.gpg"
 AuthMechs LOGIN
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
 
 IMAPStore gmail-remote
 Account jorge
 
 MaildirStore gmail-local
-Path ~/mail/gmail/
-Inbox ~/mail/gmail/INBOX
+Path ~/mail/personal-gmail/
+Inbox ~/mail/personal-gmail/INBOX
 SubFolders Verbatim
 
 
@@ -27,25 +26,25 @@ Expunge Both
 SyncState *
 MaxMessages 10000
 
-Channel gmail-sent
-Far :gmail-remote:"[Gmail]/Enviados"
-Near :gmail-local:"Sent Mail"
-Create Both
-Expunge Both
-SyncState *
-
-Channel gmail-draft
-Far :gmail-remote:"[Gmail]/Borradores"
-Near :gmail-local:"Borradores"
-Create Both
-Expunge Both
-SyncState *
+# Channel gmail-sent
+# Far :gmail-remote:"[Gmail]/Enviados"
+# Near :gmail-local:"Sent Mail"
+# Create Both
+# Expunge Both
+# SyncState *
+#
+# Channel gmail-draft
+# Far :gmail-remote:"[Gmail]/Borradores"
+# Near :gmail-local:"Borradores"
+# Create Both
+# Expunge Both
+# SyncState *
 
 
 Group jorge
 Channel gmail-inbox
-Channel gmail-sent
-Channel gmail-draft
+# Channel gmail-sent
+# Channel gmail-draft
 
 # =====================================================================
 
@@ -54,16 +53,19 @@ IMAPAccount andino
 Host 127.0.0.1
 Port 1143
 User jorge@andinotechnologies.com
-PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@andinotechnologies.com.gpg"
-AuthMechs LOGIN
-SSLType None
+Pass "GfyikzUI-KWTMBOFBy0v4A"
+AuthMechs *
+# TLSType 
+TLSVersions +1.2
+CertificateFile .dotfiles/andino_proton_bridge_cert.pem
+ClientKey .dotfiles/andino_proton_bridge_key.pem
 
 IMAPStore andino-remote
 Account andino
 
 MaildirStore andino-local
-Path ~/mail/proton/
-Inbox ~/mail/proton/Inbox
+Path ~/mail/andino/
+Inbox ~/mail/andino/Inbox
 SubFolders Verbatim
 
 Channel andino
@@ -84,7 +86,6 @@ SyncState *
 # PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge@tila.app.gpg"
 # AuthMechs LOGIN
 # SSLType IMAPS
-# SSLVersions TLSv1.2
 #
 # IMAPStore tila-remote
 # Account tila
@@ -113,7 +114,6 @@ SyncState *
 # PassCmd "/opt/homebrew/bin/gpg --decrypt --quiet ~/.dotfiles/passwords/.mbsyncpass-jorge.rojas@babytila.app.gpg"
 # AuthMechs LOGIN
 # SSLType IMAPS
-# SSLVersions TLSv1.2
 #
 # IMAPStore baby-tila-remote
 # Account baby-tila
@@ -141,8 +141,7 @@ Port 993
 User diana_camero15@hotmail.com
 PassCmd "/Users/jorgerojas/.dotfiles/bin/mutt_oauth2.py -t ~/.dotfiles/passwords/.mbsyncpass-diana_camero15@hotmail.com.gpg"
 AuthMechs XOAUTH2
-SSLType IMAPS
-SSLVersions TLSv1.1 TLSv1.2
+TLSType IMAPS
 
 IMAPStore diana-remote
 Account diana
